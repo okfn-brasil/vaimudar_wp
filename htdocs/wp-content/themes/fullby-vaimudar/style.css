@@ -1,0 +1,176 @@
+/*
+Theme Name:     VaiMudar.org Theme
+Theme URI:      http: //www.vaimudar.org/wptheme
+Description:    Child theme for the fullby theme
+Author:         Henry Shinohara
+Author URI:     http: //www.vaimudar.org/
+Template:       fullby
+Version:        0.1.0
+*/
+
+@import url("../fullby/style.css");
+
+body, html , span, h1, h2, h3, h4, h5, li, span, div, td{font-family: "Open Sans";}
+
+a{color:#02c29d;}
+a:focus, a:hover{color:#08ab9a; text-decoration: none;}
+
+.grid-tit a:hover{color:#08ab9a;}
+
+.no-gap{
+	padding-left: 0;
+	padding-right: 0;
+}
+.no-gap-right{
+	padding-right: 0;
+}
+.no-gap-left{
+	padding-left: 0;
+}
+
+.grid-cat a,
+.cat a{
+	background-color: #0bd0bb;
+	color: #ffffff;
+	text-decoration: none;
+	padding: 5px 10px;
+	font-size: 0.9em;
+	text-transform: initial;
+}
+.grid-cat a:hover,
+.cat a:hover{
+	background-color: #08ab9a;
+	color: #ffffff;
+}
+
+.grid-tit{
+	text-transform: none;
+	font-weight: bold;
+	font-size: 1.8em;
+	color: #363636;
+}
+.grid-tit a{
+	color: #363636;
+}
+
+.navbar-fixed-top{
+	background-color: #363636;
+}
+
+.nav-tabs, .nav-tabs>li, .nav-tabs>li>a, .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover{
+	border: none;
+}
+.nav-tabs>li>a{
+	border-radius: 0px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 0.9em;
+	text-transform: uppercase;
+}
+.nav-tabs>li{
+	padding-left: 0;
+	padding-right: 0;
+}
+.nav-tabs>li a{
+	margin-right: 0;
+	background-color: #0eaf9e;
+	color: #fff;
+}
+.nav-tabs>li.active a,
+.nav-tabs>li.active a:hover{
+	background-color: #0bd0bb;
+	color: #fff;
+}
+.nav-tabs>li a:hover{
+	background-color: #0bd0bb;
+}
+
+#mainmenu>ul>li>a{
+	text-transform: initial;
+	font-weight: bold;
+	color: #fff;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+#mainmenu>ul>li>a:hover{
+	color: #2dd4c3;
+	background-color: #333333;
+}
+#mainmenu>ul>li.active>a{
+	color: #2dd4c3;
+	background-color: #282828;
+}
+#mainmenu>ul>li.active>a:hover{
+	color: #fff;
+}
+
+#mainmenu ul.social li{
+	font-size: 0.7em;
+}
+#mainmenu ul.social li a{
+	padding-top: 16px;
+	padding-bottom: 13px;
+	background-color: #282828;
+}
+#mainmenu ul.social li a:hover{
+	background-color: #111111;
+}
+
+#searchform button{
+	background-color: #0bd0bb;
+	border: none;
+	padding: 6px 10px;
+}
+#searchform button:hover{
+	background-color: #0eaf9e;
+}
+.tab-header{
+	background-color: #363636;
+	color: #fff;
+	font-weight: bold;
+	padding: 10px;
+	margin-left: -1.1em;
+	margin-right: -1.1em;
+}
+
+.greenlight{
+	color: #0bd0bb;
+}
+
+.featured .title,.tab-content .title,.sing-tit,.sidebar .widget h3{
+	text-transform: none;
+	font-weight: bold;
+}
+
+.featured{
+	background: #222;
+}
+
+.footer ul{
+	list-style: none;
+}
+.footer .logo-footer{
+	padding-top: 25px;
+}
+.footer ul li{
+	display: inline-block;
+}
+.footer ul li.label{
+	color: #575757;
+}
+.footer ul li.image.divider{
+	border-right: 1px solid #545454;
+	padding-right: 20px;
+}
+.footer ul li.label.divider{
+	padding-left: 20px;
+}
+.footer.copyright{
+	border-top: 1px solid #545454;
+	color: #848484;
+	font-size: 0.8em;
+}
+.footer.copyright a:hover{
+	text-decoration: none;
+	color: #f0f0f0;
+}
