@@ -222,3 +222,27 @@ a:focus, a:hover{color:#08ab9a; text-decoration: none;}
 .redes-sidebar .articles-list .hr{
 	padding: 0 80px;
 }
+.redes-wrapper{
+	margin-top: -40px;
+	background-color: #fff;
+}
+.redes-header{
+	position: relative;
+	height: 240px;
+	background-repeat: none;
+	background-position: top center;
+	background-size: 100% auto;
+}
+.redes-header .title{
+	position: absolute;
+	top: 0;
+	background-image: url('../img/bg_under_text.png');
+	opacity: 0.4;
+	width: 100%;
+}
+.redes-header .title .text{
+	color: #fff;
+	font-weight: bold;
+	font-size: 1.5em;
+	padding: 5px 0;
+}

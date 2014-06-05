@@ -3,8 +3,20 @@
 	global $wp;
 
 ?>
+<div class="redes-header" style="background-image: url('<?php bloginfo('stylesheet_directory'); ?>/img/obras.jpg');">
+	<div class="title row">
+		<div class="col-md-10 col-md-offset-1 text">
+			Odebrecht Transport S.A.
+		</div>
+	</div>
+</div>
+<div class="col-md-10 col-md-offset-1 redes-wrapper">
+	<div class="row">
 	<div class="col-md-9">
 		<div class="redes-content">
+		
+		<p class="grid-cat"><a href="" title="Redes de poder" rel="category tag">Redes de poder</a></p>
+		
 <?php
 	//	Informações sobre a categoria
 	$current_url 	= add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
@@ -128,5 +140,7 @@
 ?>	
 		</div>
 	</div>
+	</div>
+</div>
 	
 <?php get_footer(); ?>	
