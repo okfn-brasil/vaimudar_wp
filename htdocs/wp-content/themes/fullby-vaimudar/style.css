@@ -236,8 +236,7 @@ a:focus, a:hover{color:#08ab9a; text-decoration: none;}
 .redes-header .title{
 	position: absolute;
 	top: 0;
-	background-image: url('../img/bg_under_text.png');
-	opacity: 0.4;
+	background-image: url('img/bg_under_text.png');
 	width: 100%;
 }
 .redes-header .title .text{
