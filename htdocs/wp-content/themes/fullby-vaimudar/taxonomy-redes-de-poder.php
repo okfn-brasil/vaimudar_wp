@@ -2,27 +2,54 @@
 	get_header(); 
 	global $wp;
 
+//	Informações sobre a categoria
+	$current_url 	= add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
+	$current_url 	= explode('=',$current_url);
+	$category_name 	= $current_url[count($current_url)-1];	
 ?>
 <div class="redes-header" style="background-image: url('<?php bloginfo('stylesheet_directory'); ?>/img/obras.jpg');">
 	<div class="title row">
 		<div class="col-md-10 col-md-offset-1 text">
-			Odebrecht Transport S.A.
+			<?php echo $category_name; ?>
 		</div>
 	</div>
 </div>
 <div class="col-md-10 col-md-offset-1 redes-wrapper">
-	<div class="row">
-	<div class="col-md-9">
+	<div class="row">		
+	<p class="grid-cat"><a href="" title="Redes de poder" rel="category tag">Redes de poder</a></p>
+	<br />
+	<div class="col-md-9 redes-left">
 		<div class="redes-content">
-		
-		<p class="grid-cat"><a href="" title="Redes de poder" rel="category tag">Redes de poder</a></p>
+			<?php //	Informações sobre a rede ?>
+			<div class="redes-description">
+				<p>
+					<strong>Tipo:</strong> Empresa privada<br />
+					<strong>CNPJ ou CPF:</strong> 05.144.757/0001-72<br />
+					<strong>Controlador último:</strong> KIEPPE PATRIMONIAL LTDA S/C<br />
+				</p>
+				<p>
+					Odebrecht S.A lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore 
+					magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+					dolor in reprehenderit in voluptate velit esse cillum dolore. Pellentesque tincidunt luctus felis at varius. Fusce ac vestibulum purus, 
+					id feugiat nunc. Morbi quis venenatis sem, eget pretium dolor. Maecenas consectetur scelerisque ullamcorper. Sed sed sapien ipsum. Quisque sed 
+					laoreet erat. Nullam vulputate blandit mi, eu interdum diam sagittis id. Quisque eget dolor sit amet magna aliquet tristique porta vitae dui. Aliquam 
+					convallis orci neque, sit amet posuere dui tempor ut. Vivamus augue risus, ornare a volutpat ac, feugiat ut velit. 
+				</p>
+				
+				<div class="row silver-box">
+					<div class="col-md-6">
+						<strong>Lorem ipsum dolor sit amet consectetur</strong><br />
+						Adipisicing elit, sed do eiusmoin.
+					</div>
+					<div class="col-md-6 text-center">
+						<a href="" class="btn btn-info btn-black col-md-8">Proprietários do Brasil &nbsp;&nbsp;&nbsp;<span class="highlight">></span></a>
+					</div>
+				</div>
+				
+			</div>
+			<br /><br />
 		
 <?php
-	//	Informações sobre a categoria
-	$current_url 	= add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
-	$current_url 	= explode('=',$current_url);
-	$category_name 	= $current_url[count($current_url)-1];	
-	
 	$term 				= get_term_by('slug', $category_name, 'redes-de-poder');
 	$term_name 			= $term->name;
 	$term_description 	= $term->description; //contem a info do cnpj
@@ -41,15 +68,46 @@
 	      )
 	   )
 	);
-	echo '<h3 class="sing-tit">Obras</h3><br />';
+	
+	?>
+<div class="obras-list">
+	<h3 class="sing-tit">Obras</h3><br />
+	<div class="row">
+		<div class="col-md-2 text-center">
+			<img src="<?php bloginfo('stylesheet_directory')?>/img/icon_stadium.png" class="img-responsive">
+		</div>
+		<div class="col-md-10">
+	<?php
+	echo '		<ul>';
 	$obras = get_posts($args);
 	foreach($obras as $obra) {
-		echo mysql2date('d/m/Y', $obra->post_date).'<br />'; //data
-		echo $obra->post_title.'<br />'; //titulo
-		echo $obra->post_excerpt.'<br />'; //texto resumido
-		echo get_permalink($obra->ID).'<br />'; //link
-		get_the_post_thumbnail( $obra->ID, '32x32' );
+		echo '			<li class="item">';
+		echo '				<a href="' . get_permalink($obra->ID) . '">'.$obra->post_title.'</a>'; //titulo
+		echo '			</li>';
 	}
+	echo '		</ul>';
+	echo '	</div>';
+	echo '</div>';
+?>
+	<div class="row">
+		<div class="col-md-2 text-center">
+			<img src="<?php bloginfo('stylesheet_directory')?>/img/icon_transport.png" class="img-responsive">
+		</div>
+		<div class="col-md-10">
+	<?php
+	echo '		<ul>';
+	$obras = get_posts($args);
+	foreach($obras as $obra) {
+		echo '			<li class="item">';
+		echo '				<a href="' . get_permalink($obra->ID) . '">'.$obra->post_title.'</a>'; //titulo
+		echo '			</li>';
+	}
+	echo '		</ul>';
+	echo '	</div>';
+	echo '</div>';
+	
+	echo '</div>';
+	echo '<br />';
 	
 //	Pega todos os posts do tipo analises da categoria
 	$args = array(
@@ -98,7 +156,7 @@
 	);
 	$rede_de_poder = get_posts($args);
 	
-	echo '<div class="item-list">';
+	echo '<div class="item-list item">';
 	echo '<h3 class="sing-tit">Empresas</h3>';
 	$cnpj = array();
 	echo '<ul>';
@@ -107,6 +165,12 @@
 		$cnpj[] = get_metadata('post', $rede->ID, 'cnpj', 1).'<br />'; //pega o cnpj de cada empresa, não precisa aparecer
 	}
 	echo '</ul>';
+	echo '</div>';
+
+//	Gráficos
+	echo '<div class="chart item">';
+	echo '<h3 class="sing-tit">Distribuição por partido e ano</h3>';
+	echo '<img src="/wp-content/uploads/2014/06/Grafico.jpg" class="text-center">';
 	echo '</div>';
 
 //	Pega todos os posts do tipo noticias da categoria
@@ -123,7 +187,7 @@
 	);
 	$noticias = get_posts($args);
 	
-	echo '<div class="articles-list news">';
+	echo '<div class="articles-list item news">';
 	echo '<h3 class="sing-tit">Notícias</h3>';
 	echo '<ul>';
 	foreach($noticias as $noticia) {

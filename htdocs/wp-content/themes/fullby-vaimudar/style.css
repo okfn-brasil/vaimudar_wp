@@ -196,6 +196,9 @@ a:focus, a:hover{color:#08ab9a; text-decoration: none;}
 	padding: 20px;
 }
 
+.redes-left .redes-content{
+	padding: 0;
+}
 .articles-list .date{
 	color: #999999;
 	font-size: 1.1em;
@@ -204,6 +207,7 @@ a:focus, a:hover{color:#08ab9a; text-decoration: none;}
 	font-size: 1.4em;
 	font-weight: bold;
 }
+.redes-description,
 .articles-list .resume{
 	color: #6f6f6f;
 }
@@ -214,6 +218,7 @@ a:focus, a:hover{color:#08ab9a; text-decoration: none;}
 .articles-list .hr{
 	padding: 0 5%;
 }
+
 .redes-sidebar .articles-list .date,
 .redes-sidebar .articles-list .title{
 	font-size: 1em;
@@ -222,7 +227,20 @@ a:focus, a:hover{color:#08ab9a; text-decoration: none;}
 .redes-sidebar .articles-list .hr{
 	padding: 0 80px;
 }
+
+.redes-sidebar .articles-list li:last-child .hr{
+	display: none;
+}
+
+.redes-sidebar .item{
+	border-bottom: 1px solid #e2e2e2;
+	padding: 20px 0;
+}
+.redes-sidebar .item:first-child{
+	padding-top: 0;
+}
 .redes-wrapper{
+	padding: 30px;
 	margin-top: -40px;
 	background-color: #fff;
 }
@@ -242,6 +260,27 @@ a:focus, a:hover{color:#08ab9a; text-decoration: none;}
 .redes-header .title .text{
 	color: #fff;
 	font-weight: bold;
-	font-size: 1.5em;
-	padding: 5px 0;
+	font-size: 1.6em;
+	padding: 5px 40px;
+	text-transform: uppercase;
+}
+
+.obras-list .row{
+	border-bottom: 1px dashed #74cec5;
+	padding: 10px 0;
+}
+.chart h3{
+	font-size: 1.1em;
+}
+.silver-box{
+	background-color: #f3f3f3;
+	margin: 20px 0;
+	padding: 20px 30px;
+}
+.btn-black{
+	background-color: #474747;
+	border-color: #666666;
+}
+.btn-black .highlight{
+	color: #05dbc4;
 }
