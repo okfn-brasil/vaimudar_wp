@@ -21,7 +21,11 @@
 		$term_cnpj = $matches[1].'.'.$matches[2].'.'.$matches[3].'/'.$matches[4].'-'.$matches[5];
 	} else {
 		preg_match('/(^\d{3})(\d{3})(\d{3})(\d{2}$)/',trim($term_cnpj[1]), $matches);
-		$term_cnpj = $matches[1].'.'.$matches[2].'.'.$matches[3].'-'.$matches[4];
+		if($matches) {
+			$term_cnpj = $matches[1].'.'.$matches[2].'.'.$matches[3].'-'.$matches[4];
+		} else {
+			$term_cnpj = 'Não informado';
+		}
 	}
 
 	$url_proprietarios = 'http://proprietariosdobrasil.org.br/proprietarios/'.$category_name;
