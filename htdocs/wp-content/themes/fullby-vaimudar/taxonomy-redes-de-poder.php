@@ -5,12 +5,32 @@
 //	Informações sobre a categoria
 	$current_url 	= add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
 	$current_url 	= explode('=',$current_url);
-	$category_name 	= $current_url[count($current_url)-1];	
+	$category_name 	= $current_url[count($current_url)-1];
+
+	$term 				= get_term_by('slug', $category_name, 'redes-de-poder');
+	$term_name 			= $term->name;
+	$term_description 	= $term->description; //contem a info do cnpj
+	$term_id			= $term->id;
+	
+	$description	= explode(',', $term_description);
+	$term_cnpj 		= explode(':', $description[0]);
+	$type			= explode(':', $description[1]);
+	
+	preg_match('/(^\d{2})(\d{3})(\d{3})(\d{4})(\d{2}$)/', trim($term_cnpj[1]), $matches);
+	if( $matches ) {
+		$term_cnpj = $matches[1].'.'.$matches[2].'.'.$matches[3].'/'.$matches[4].'-'.$matches[5];
+	} else {
+		preg_match('/(^\d{3})(\d{3})(\d{3})(\d{2}$)/',trim($term_cnpj[1]), $matches);
+		$term_cnpj = $matches[1].'.'.$matches[2].'.'.$matches[3].'-'.$matches[4];
+	}
+
+	$url_proprietarios = 'http://proprietariosdobrasil.org.br/proprietarios/'.$category_name;
+	
 ?>
 <div class="redes-header" style="background-image: url('<?php bloginfo('stylesheet_directory'); ?>/img/obras.jpg');">
 	<div class="title row">
 		<div class="col-md-10 col-md-offset-1 text">
-			<?php echo $category_name; ?>
+			<?php echo $term_name; ?>
 		</div>
 	</div>
 </div>
@@ -23,9 +43,11 @@
 			<?php //	Informações sobre a rede ?>
 			<div class="redes-description">
 				<p>
-					<strong>Tipo:</strong> Empresa privada<br />
-					<strong>CNPJ ou CPF:</strong> 05.144.757/0001-72<br />
-					<strong>Controlador último:</strong> KIEPPE PATRIMONIAL LTDA S/C<br />
+					<?php if($type) {?>
+					<strong>Tipo: </strong><?php echo $type[1];?><br />
+					<?php }?>
+					<strong>CNPJ ou CPF: </strong><?php echo $term_cnpj; ?><br />
+<!--					<strong>Controlador último:</strong> KIEPPE PATRIMONIAL LTDA S/C<br />-->
 				</p>
 				<p>
 					Odebrecht S.A lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore 
@@ -42,7 +64,7 @@
 						Adipisicing elit, sed do eiusmoin.
 					</div>
 					<div class="col-md-6 text-center">
-						<a href="" class="btn btn-info btn-black col-md-8">Proprietários do Brasil &nbsp;&nbsp;&nbsp;<span class="highlight">></span></a>
+						<a href=<?php echo $url_proprietarios;?> class="btn btn-info btn-black col-md-8" target="_blank">Proprietários do Brasil &nbsp;&nbsp;&nbsp;<span class="highlight">></span></a>
 					</div>
 				</div>
 				
@@ -50,27 +72,31 @@
 			<br /><br />
 		
 <?php
-	$term 				= get_term_by('slug', $category_name, 'redes-de-poder');
-	$term_name 			= $term->name;
-	$term_description 	= $term->description; //contem a info do cnpj
-	$term_id			= $term->id;
-
 	
 //	Pega todos os posts do tipo obras da categoria
 	$args = array(
 	   'post_type' => 'obras',
 	   'tax_query' => array(
 	      array(
-	         'taxonomy' => 'redes-de-poder',
-	         'field' => 'slug',
-	         'terms' => array($category_name),
-	         'operator' => 'IN'
+	        'taxonomy' => 'redes-de-poder',
+	        'field' => 'slug',
+	        'terms' => array($category_name),
+	        'operator' => 'IN'
 	      )
-	   )
+	   ),
+	    'meta_query' => 
+	   		array(
+				array(
+                	'key' => 'tipo',
+                    'value' => 'estadio',
+                    )
+			),
 	);
 	
-	?>
-<div class="obras-list">
+	$obras = get_posts($args);
+	if($obras) {
+?>
+	<div class="obras-list">
 	<h3 class="sing-tit">Obras</h3><br />
 	<div class="row">
 		<div class="col-md-2 text-center">
@@ -78,16 +104,39 @@
 		</div>
 		<div class="col-md-10">
 	<?php
-	echo '		<ul>';
-	$obras = get_posts($args);
-	foreach($obras as $obra) {
-		echo '			<li class="item">';
-		echo '				<a href="' . get_permalink($obra->ID) . '">'.$obra->post_title.'</a>'; //titulo
-		echo '			</li>';
+		echo '		<ul>';
+		foreach($obras as $obra) {
+			echo '			<li class="item">';
+			echo '				<a href="' . get_permalink($obra->ID) . '">'.$obra->post_title.'</a>'; //titulo
+			echo '			</li>';
+		}
+		echo '		</ul>';
+		echo '	</div>';
+		echo '</div>';
 	}
-	echo '		</ul>';
-	echo '	</div>';
-	echo '</div>';
+?>
+
+<?php 
+	$args = array(
+	   'post_type' => 'obras',
+	   'tax_query' => array(
+	      array(
+	        'taxonomy' => 'redes-de-poder',
+	        'field' => 'slug',
+	        'terms' => array($category_name),
+	        'operator' => 'IN'
+	      )
+	   ),
+		'meta_query' => 
+			array(
+				array(
+				'key' => 'tipo',
+				'value' => 'aeroporto',
+			)
+		),
+	);
+	$obras = get_posts($args);
+	if($obras) {
 ?>
 	<div class="row">
 		<div class="col-md-2 text-center">
@@ -95,19 +144,19 @@
 		</div>
 		<div class="col-md-10">
 	<?php
-	echo '		<ul>';
-	$obras = get_posts($args);
-	foreach($obras as $obra) {
-		echo '			<li class="item">';
-		echo '				<a href="' . get_permalink($obra->ID) . '">'.$obra->post_title.'</a>'; //titulo
-		echo '			</li>';
+		echo '		<ul>';
+		foreach($obras as $obra) {
+			echo '			<li class="item">';
+			echo '				<a href="' . get_permalink($obra->ID) . '">'.$obra->post_title.'</a>'; //titulo
+			echo '			</li>';
+		}
+		echo '		</ul>';
+		echo '	</div>';
+		echo '</div>';
+		
+		echo '</div>';
+		echo '<br />';
 	}
-	echo '		</ul>';
-	echo '	</div>';
-	echo '</div>';
-	
-	echo '</div>';
-	echo '<br />';
 	
 //	Pega todos os posts do tipo analises da categoria
 	$args = array(
@@ -126,16 +175,24 @@
 	echo '<div class="articles-list">';
 	echo '<h3 class="sing-tit">Análises</h3>';
 	echo '<ul>';
-	foreach($analises as $analise) {
+	if($analises) {
+		foreach($analises as $analise) {
+			echo '<li>';
+			echo '<div class="date">'.mysql2date('d/m/Y', $analise->post_date).'</div>'; //data
+			echo '<div class="title"><a href="'.get_permalink($analise->ID).'">'.$analise->post_title.'</a></div>'; //titulo
+			echo '<div class="resume">'.$analise->post_excerpt.'</div>'; //texto resumido
+			echo '<div class="hr"><hr></div>';
+			echo '</li>';
+		}
+	} else {
 		echo '<li>';
-		echo '<div class="date">'.mysql2date('d/m/Y', $analise->post_date).'</div>'; //data
-		echo '<div class="title"><a href="'.get_permalink($analise->ID).'">'.$analise->post_title.'</a></div>'; //titulo
-		echo '<div class="resume">'.$analise->post_excerpt.'</div>'; //texto resumido
+		echo '<div class="resume">Nenhuma análise disponível</div>'; //texto resumido
 		echo '<div class="hr"><hr></div>';
 		echo '</li>';
 	}
 	echo '</ul>';
 	echo '</div>';
+	
 ?>
 		</div>
 	</div>					
@@ -159,14 +216,17 @@
 	echo '<div class="item-list item">';
 	echo '<h3 class="sing-tit">Empresas</h3>';
 	$cnpj = array();
-	echo '<ul>';
-	foreach($rede_de_poder as $rede) {
-		echo '<li>'.$rede->post_title.'</li>'; //titulo
-		$cnpj[] = get_metadata('post', $rede->ID, 'cnpj', 1).'<br />'; //pega o cnpj de cada empresa, não precisa aparecer
+	if($rede_de_poder) {
+		echo '<ul>';
+		foreach($rede_de_poder as $rede) {
+			echo '<li>'.$rede->post_title.'</li>'; //titulo
+			$cnpj[] = get_metadata('post', $rede->ID, 'cnpj', 1).'<br />'; //pega o cnpj de cada empresa, não precisa aparecer
+		}
+	} else {
+		echo '<li><div class="resume">Nenhuma empresa</div></li>'; //titulo
 	}
 	echo '</ul>';
 	echo '</div>';
-
 //	Gráficos
 	echo '<div class="chart item">';
 	echo '<h3 class="sing-tit">Distribuição por partido e ano</h3>';
@@ -186,21 +246,21 @@
 	   )
 	);
 	$noticias = get_posts($args);
-	
-	echo '<div class="articles-list item news">';
-	echo '<h3 class="sing-tit">Notícias</h3>';
-	echo '<ul>';
-	foreach($noticias as $noticia) {
-		echo '<li>';
-		echo '<div class="date">'.mysql2date('d/m/Y', $noticia->post_date).'</div>'; //data
-		echo '<div class="title"><a href="'.get_permalink($noticia->ID).'">'.$noticia->post_title.'</a></div>'; //titulo
-		echo '<div class="resume">'.$noticia->post_excerpt.'</div>'; //texto resumido
-		echo '<div class="hr"><hr></div>';
-		echo '</li>';
-	}
-	echo '</ul>';
-	echo '</div>';
-	
+	if($noticias) {
+		echo '<div class="articles-list item news">';
+		echo '<h3 class="sing-tit">Notícias</h3>';
+		echo '<ul>';
+		foreach($noticias as $noticia) {
+			echo '<li>';
+			echo '<div class="date">'.mysql2date('d/m/Y', $noticia->post_date).'</div>'; //data
+			echo '<div class="title"><a href="'.get_permalink($noticia->ID).'">'.$noticia->post_title.'</a></div>'; //titulo
+			echo '<div class="resume">'.$noticia->post_excerpt.'</div>'; //texto resumido
+			echo '<div class="hr"><hr></div>';
+			echo '</li>';
+		}
+		echo '</ul>';
+		echo '</div>';
+	} 
 ?>	
 		</div>
 	</div>
