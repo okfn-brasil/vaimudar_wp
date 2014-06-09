@@ -1,4 +1,3 @@
-<!--VaiMudar - Custom code: add a post_type and a taxonomy-->
 <?php
 add_action('init', 'register_cpt_empresas', 0);
 add_action('init', 'register_cpt_analises', 0);
