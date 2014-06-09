@@ -1,6 +1,16 @@
 <?php 
 	get_header(); 
 	global $wp;
+	
+	$open_capital = array(
+		'andrade-gutierrez-sa',
+		'construtora-oas-ltda',
+		'eike-fuhrken-batista',
+		'mendes-junior-engenharia-sa',
+		'odebrecht-s-a',
+		'queiroz-galvao-s-a',
+		'soares-penido-obras-construcoes-e-investimentos-ltda'
+	);
 
 //	Informações sobre a categoria
 	$current_url 	= add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
@@ -28,7 +38,11 @@
 		}
 	}
 
-	$url_proprietarios = 'http://proprietariosdobrasil.org.br/proprietarios/'.$category_name;
+	if( in_array($category_name, $open_capital) ) {
+		$url_proprietarios = 'http://proprietariosdobrasil.org.br/proprietarios/'.$category_name;
+	} else {
+		$url_proprietarios = false;
+	}
 	
 ?>
 <div class="redes-header" style="background-image: url('<?php bloginfo('stylesheet_directory'); ?>/img/obras.jpg');">
@@ -47,11 +61,13 @@
 			<?php //	Informações sobre a rede ?>
 			<div class="redes-description">
 				<p>
-					<?php if($type) {?>
-					<strong>Tipo: </strong><?php echo $type[1];?><br />
-					<?php }?>
+					<?php 
+					
+					if( isset($type[1]) ) {
+						echo '<strong>Tipo: </strong>'; echo $type[1]; echo '<br />';
+					}
+					?>
 					<strong>CNPJ ou CPF: </strong><?php echo $term_cnpj; ?><br />
-<!--					<strong>Controlador último:</strong> KIEPPE PATRIMONIAL LTDA S/C<br />-->
 				</p>
 				<?php /**<p>
 					Odebrecht S.A lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore 
@@ -62,15 +78,17 @@
 					convallis orci neque, sit amet posuere dui tempor ut. Vivamus augue risus, ornare a volutpat ac, feugiat ut velit. 
 				</p>
 				*/ ?>
+				<?php if ($url_proprietarios) : ?>
 				<div class="row silver-box">
-					<div class="col-md-6">
-						<strong>Lorem ipsum dolor sit amet consectetur</strong><br />
-						Adipisicing elit, sed do eiusmoin.
+				<div class="col-md-6">
+						<strong><?php echo $term_name;?></strong><br />
+						Veja mais informações clicanco no botão ao lado.
 					</div>
-					<div class="col-md-6 text-center">
+					<div class="col-md-6">
 						<a href=<?php echo $url_proprietarios;?> class="btn btn-info btn-black col-md-8" target="_blank">Proprietários do Brasil &nbsp;&nbsp;&nbsp;<span class="highlight">></span></a>
 					</div>
 				</div>
+				<?php endif;?>
 				
 			</div>
 			<br /><br />
@@ -91,8 +109,8 @@
 	    'meta_query' => 
 	   		array(
 				array(
-                	'key' => 'tipo',
-                    'value' => 'estadio',
+                	'key' => 'tipo_obra',
+                    'value' => 'ESTÁDIOS',
                     )
 			),
 	);
@@ -134,8 +152,8 @@
 		'meta_query' => 
 			array(
 				array(
-				'key' => 'tipo',
-				'value' => 'aeroporto',
+				'key' => 'tipo_obra',
+				'value' => 'MOBILIDADE URBANA',
 			)
 		),
 	);
