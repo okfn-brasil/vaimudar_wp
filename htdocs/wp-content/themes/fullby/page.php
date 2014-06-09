@@ -1,10 +1,13 @@
 <?php get_header(); ?>			
 		
 	<div class="col-md-9 single">
-	
+	<?php 
+		$analises = new WP_Query();
+		$analises->query('post_type=analises');
+	?>
 		<div class="col-md-9 single-in">
 		
-			<?php if (have_posts()) :?><?php while(have_posts()) : the_post(); ?> 
+			<?php if ($analises->have_posts()) :?><?php while($analises->have_posts()) : $analises->the_post(); ?> 
 
 				<?php if ( has_post_thumbnail() ) { ?>
 
@@ -35,7 +38,7 @@
 			<?php endwhile; ?>
 	        <?php else : ?>
 
-	                <p>Sorry, no posts matched your criteria.</p>
+	                <p>Nenhuma análise disponível.</p>
 	         
 	        <?php endif; ?> 
 	        
