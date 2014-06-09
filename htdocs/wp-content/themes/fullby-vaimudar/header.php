@@ -51,18 +51,18 @@
         
         <div id="mainmenu" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right social">
-				<li><a href=""><i class="fa fa-facebook fa-2x"></i></a></li>
-				<li><a href=""><i class="fa fa-twitter fa-2x"></i></a></li>
+				<li><a href="https://www.facebook.com/vaimudarobrasil" target="_blank"><i class="fa fa-facebook fa-2x"></i></a></li>
+				<li><a href="https://twitter.com/okfnbr" target="_blank"><i class="fa fa-twitter fa-2x"></i></a></li>
 			</ul>
           <?php /* Primary navigation */
-			wp_nav_menu( array(
-			  'menu' => 'main',
-			  'depth' => 2,
-			  'container' => false,
-			  'menu_class' => 'nav navbar-nav navbar-right',
-			  //Process nav menu using our custom nav walker
-			  'walker' => new wp_bootstrap_navwalker())
-			);
+//			wp_nav_menu( array(
+//			  'menu' => 'main',
+//			  'depth' => 2,
+//			  'container' => false,
+//			  'menu_class' => 'nav navbar-nav navbar-right',
+//			  //Process nav menu using our custom nav walker
+//			  'walker' => new wp_bootstrap_navwalker())
+//			);
 			?>
         </div><!--/.nav-collapse -->
     

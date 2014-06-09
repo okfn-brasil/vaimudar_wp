@@ -53,7 +53,7 @@
 					<strong>CNPJ ou CPF: </strong><?php echo $term_cnpj; ?><br />
 <!--					<strong>Controlador último:</strong> KIEPPE PATRIMONIAL LTDA S/C<br />-->
 				</p>
-				<p>
+				<?php /**<p>
 					Odebrecht S.A lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore 
 					magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
 					dolor in reprehenderit in voluptate velit esse cillum dolore. Pellentesque tincidunt luctus felis at varius. Fusce ac vestibulum purus, 
@@ -61,7 +61,7 @@
 					laoreet erat. Nullam vulputate blandit mi, eu interdum diam sagittis id. Quisque eget dolor sit amet magna aliquet tristique porta vitae dui. Aliquam 
 					convallis orci neque, sit amet posuere dui tempor ut. Vivamus augue risus, ornare a volutpat ac, feugiat ut velit. 
 				</p>
-				
+				*/ ?>
 				<div class="row silver-box">
 					<div class="col-md-6">
 						<strong>Lorem ipsum dolor sit amet consectetur</strong><br />
