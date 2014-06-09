@@ -21,7 +21,9 @@
 				
 				<div class="sing-tit-cont">
 					
-					<h3 class="sing-tit"><?php the_title(); ?></h3>
+					<h3 class="sing-tit">
+					<a href="<?php the_permalink();?>"><?php the_title();?></a>
+					</h3>
 				
 				</div>
 
