@@ -135,6 +135,7 @@
 		echo '		</ul>';
 		echo '	</div>';
 		echo '</div>';
+		echo '</div>';
 	}
 ?>
 
@@ -175,8 +176,6 @@
 		echo '		</ul>';
 		echo '	</div>';
 		echo '</div>';
-		
-		echo '</div>';
 		echo '<br />';
 	}
 	
@@ -216,7 +215,7 @@
 	echo '</div>';
 	
 ?>
-		</div>
+	</div>					
 	</div>					
 	<div class="col-md-3 redes-sidebar">
 		<div class="sec-sidebar redes-content">
