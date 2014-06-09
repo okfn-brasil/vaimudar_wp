@@ -29,7 +29,7 @@
 					
 					<div class="sing-spacer">
 					
-						<?php the_content('Leggi...');?>
+						<?php the_excerpt();?>
 
 					</div>
 
