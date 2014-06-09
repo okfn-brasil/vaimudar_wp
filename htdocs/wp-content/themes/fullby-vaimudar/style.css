@@ -284,3 +284,18 @@ a:focus, a:hover{color:#08ab9a; text-decoration: none;}
 .btn-black .highlight{
 	color: #05dbc4;
 }
+ul.group-list{
+	list-style: none;
+	padding: 0;
+}
+ul.group-list li:hover .content{
+	border-color: #02c29d;
+}
+ul.group-list li .content{
+	padding: 10px 20px;
+	margin: 5px;
+	border: 1px solid #e2e2e2;
+}
+ul.group-list li .content .title a{
+	font-weight: bold;
+}

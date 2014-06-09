@@ -40,12 +40,13 @@
 					<div class="sing-spacer">
 			<?php 
 			
-				echo '<ul>';
+				echo '<ul class="group-list">';
 				foreach($terms as $term) {
-					echo '<li>';
+					echo '<li class="col-md-6">';
+					echo '<div class="content">';
 					echo '<div class="title"><a href="/redes-de-poder/'.$term->slug.'">'.$term->name.'</a></div>'; //titulo
 					echo '<div class="resume">'.$term->post_excerpt.'</div>'; //texto resumido
-					echo '<div class="hr"><hr></div>';
+					echo '</div>';
 					echo '</li>';
 				}
 				echo '</ul>';
