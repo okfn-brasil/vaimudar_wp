@@ -67,8 +67,9 @@
         </div><!--/.nav-collapse -->
     
     </div>
-    
-    <?php if (is_home()) { ?>
+    <?php $current_url 	= add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
+    ?>
+    <?php if (is_home() || $current_url == 'http://vaimudar.org' || $current_url == 'http://vaimudar.org/') { ?>
     
     	 <?php if (!is_paged()){ ?> 
     
