@@ -3,7 +3,7 @@
 	<div class="col-md-9 single">
 	
 		<div class="col-md-9 single-in">
-		 <img width="800" height="494" src="http://poder.vaimudar.org/wp-content/uploads/2014/06/800px-Os_Candangos-800x494.jpg" class="sing-cop wp-post-image" alt="800px-Os_Candangos">
+		 <img width="800" height="494" src="http://vaimudar.org/wp-content/uploads/2014/06/800px-Os_Candangos-800x494.jpg" class="sing-cop wp-post-image" alt="800px-Os_Candangos">
 		
 		<?php $terms = get_terms('redes-de-poder') ;?>
 		
