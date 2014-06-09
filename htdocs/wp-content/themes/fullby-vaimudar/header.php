@@ -83,8 +83,9 @@
 			  
 					    <div class="col-sm-4 col-md-4 item-featured">
 					    
+					    <?php $link = get_post_meta($post->ID, 'link', true ); ?>
 					    	
-							<a href="<?php the_permalink(); ?>">
+							<a href="<?php echo $link ? $link : the_permalink(); ?>">
 				
 					    		<div class="caption">
 						    		<div class="date"><i class="fa fa-clock-o"></i> <?php the_time('j M , Y') ?> &nbsp;
