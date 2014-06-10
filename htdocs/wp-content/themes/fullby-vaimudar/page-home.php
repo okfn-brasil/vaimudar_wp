@@ -3,7 +3,7 @@
 	<div class="col-md-9 cont-grid">
 	<?php 
 		$analises = new WP_Query();
-		$analises->query('post_type=analises');
+		$analises->query(array('post_type' => array('analises', 'noticias', 'post' ) ) );
 	?>
 		<div class="grid">
 			<?php if ($analises->have_posts()) :?><?php while($analises->have_posts()) : $analises->the_post(); ?> 
