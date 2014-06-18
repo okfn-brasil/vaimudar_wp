@@ -5,6 +5,7 @@ add_action('init', 'register_cpt_noticias', 0);
 add_action('init', 'register_cpt_obras', 0); 
 
 add_action( 'init', 'create_power_network_hierarchical_taxonomy', 1 );
+add_action('wp_print_scripts', 'chart_addJS');
 
 function create_power_network_hierarchical_taxonomy() {
 // Add new taxonomy, make it hierarchical like categories
@@ -163,5 +164,21 @@ function register_cpt_obras() {
 		)
 	)); 
 }
+
+function wpb_adding_scripts() {
+	$url = get_template_directory_uri();
+	
+//	faltando verificar a action para carregar somente quando for rede de poder
+//	$home = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
+//	die(get_permalink());
+	
+	wp_register_script('chart', $url.'-vaimudar/js/chart.js', array('jquery'),'0.1', true);
+	wp_enqueue_script('chart');
+	
+	wp_register_script('flot', $url.'-vaimudar/js/flot/jquery.flot.js', array('jquery'),'1.1', true);
+	wp_enqueue_script('flot');
+}
+
+add_action( 'wp_enqueue_scripts', 'wpb_adding_scripts' );
 
 ?>

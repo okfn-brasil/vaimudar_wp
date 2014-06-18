@@ -20,7 +20,10 @@
   
     <!-- Google web Font -->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-
+		
+	<!-- JsFlot Chart -->
+<!--	<script type="text/javascript" src="<?php //bloginfo('template_url'); ?>-vaimudar/js/flot/jquery.flot.js"></script>-->
+	
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 

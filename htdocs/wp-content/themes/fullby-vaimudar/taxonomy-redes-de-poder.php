@@ -1,6 +1,7 @@
 <?php 
 	get_header(); 
 	global $wp;
+	global $wpdb;
 	
 	$open_capital = array(
 		'andrade-gutierrez-sa',
@@ -22,21 +23,21 @@
 	$term_description 	= $term->description; //contem a info do cnpj
 	$term_id			= $term->id;
 	
-	$description	= explode(',', $term_description);
-	$term_cnpj 		= explode(':', $description[0]);
-	$type			= explode(':', $description[1]);
-	
-	preg_match('/(^\d{2})(\d{3})(\d{3})(\d{4})(\d{2}$)/', trim($term_cnpj[1]), $matches);
-	if( $matches ) {
-		$term_cnpj = $matches[1].'.'.$matches[2].'.'.$matches[3].'/'.$matches[4].'-'.$matches[5];
-	} else {
-		preg_match('/(^\d{3})(\d{3})(\d{3})(\d{2}$)/',trim($term_cnpj[1]), $matches);
-		if($matches) {
-			$term_cnpj = $matches[1].'.'.$matches[2].'.'.$matches[3].'-'.$matches[4];
-		} else {
-			$term_cnpj = 'Não informado';
-		}
-	}
+//	$description	= explode(',', $term_description);
+//	$term_cnpj 		= explode(':', $description[0]);
+//	$type			= explode(':', $description[1]);
+//	
+//	preg_match('/(^\d{2})(\d{3})(\d{3})(\d{4})(\d{2}$)/', trim($term_cnpj[1]), $matches);
+//	if( $matches ) {
+//		$term_cnpj = $matches[1].'.'.$matches[2].'.'.$matches[3].'/'.$matches[4].'-'.$matches[5];
+//	} else {
+//		preg_match('/(^\d{3})(\d{3})(\d{3})(\d{2}$)/',trim($term_cnpj[1]), $matches);
+//		if($matches) {
+//			$term_cnpj = $matches[1].'.'.$matches[2].'.'.$matches[3].'-'.$matches[4];
+//		} else {
+//			$term_cnpj = 'Não informado';
+//		}
+//	}
 
 	if( in_array($category_name, $open_capital) ) {
 		$url_proprietarios = 'http://proprietariosdobrasil.org.br/proprietarios/'.$category_name;
@@ -44,7 +45,79 @@
 		$url_proprietarios = false;
 	}
 	
+//	gráficos
+	$total_year = $wpdb->get_results(
+		"select 
+			ano,
+			sum(valor) as max_year 
+		from 
+			repasse_partido
+		where 
+			grupo like ('".$term_name."%') 
+		and 
+			ano >= 2002
+		group by
+			ano
+		order by 
+			ano"
+	);
+	
+	$total_party = $wpdb->get_results(
+		"select 
+			partido,
+			sum(valor) as max_party 
+		from 
+			repasse_partido
+		where 
+			grupo like ('".$term_name."%') 
+		and 
+			ano >= 2002
+		group by
+			partido
+		order by
+			max_party"
+	);
+	
+	$rows = $wpdb->get_results(
+		"select 
+			partido,
+			ano,
+			valor
+		from 
+			repasse_partido 
+		where 
+			grupo like ('".$term_name."%') 
+		and 
+			ano >= 2002
+		order by
+			partido"
+	);
+	
+	if( $rows ) {
+		$partido = $rows[0]->partido;
+		
+		foreach ( $rows as $row ) {
+			if($row->partido != $partido) {
+				$partido = $row->partido;
+			}
+	
+			$doacoes[$partido][] = array(
+				'ano' 		=> $row->ano,
+				'valor' 	=> $row->valor,
+			);
+			
+		}
+		 
+//		$doacoes[] = array(
+//			'total_ano' 	=> $total_year,
+//			'total_partido' => $total_party
+//		);
+		
+		echo '<div id="chart_data" value="'.trim(htmlentities(json_encode($doacoes))).'"></div>';
+	}
+
 ?>
+
 <div class="redes-header" style="background-image: url('<?php bloginfo('stylesheet_directory'); ?>/img/obras.jpg');">
 	<div class="title row">
 		<div class="col-md-10 col-md-offset-1 text">
@@ -67,17 +140,12 @@
 						echo '<strong>Tipo: </strong>'; echo $type[1]; echo '<br />';
 					}
 					?>
-					<strong>CNPJ ou CPF: </strong><?php echo $term_cnpj; ?><br />
+					<strong>Sobre </strong><br />
 				</p>
-				<?php /**<p>
-					Odebrecht S.A lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore 
-					magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
-					dolor in reprehenderit in voluptate velit esse cillum dolore. Pellentesque tincidunt luctus felis at varius. Fusce ac vestibulum purus, 
-					id feugiat nunc. Morbi quis venenatis sem, eget pretium dolor. Maecenas consectetur scelerisque ullamcorper. Sed sed sapien ipsum. Quisque sed 
-					laoreet erat. Nullam vulputate blandit mi, eu interdum diam sagittis id. Quisque eget dolor sit amet magna aliquet tristique porta vitae dui. Aliquam 
-					convallis orci neque, sit amet posuere dui tempor ut. Vivamus augue risus, ornare a volutpat ac, feugiat ut velit. 
+				<p>
+					<?php echo $term_description;?> 
 				</p>
-				*/ ?>
+				
 				<?php if ($url_proprietarios) : ?>
 				<div class="row silver-box">
 				<div class="col-md-6">
@@ -211,6 +279,13 @@
 		echo '<div class="hr"><hr></div>';
 		echo '</li>';
 	}
+	
+	//	Gráficos
+	echo '<div class="chart item">';
+	echo '<h3 class="sing-tit">Distribuição por partido e ano</h3>';
+	echo '<div id="chart" style="width:600px;height:300px"></div>';
+	echo '</div>';
+	
 	echo '</ul>';
 	echo '</div>';
 	
@@ -248,12 +323,7 @@
 	}
 	echo '</ul>';
 	echo '</div>';
-//	Gráficos
-	echo '<div class="chart item">';
-	echo '<h3 class="sing-tit">Distribuição por partido e ano</h3>';
-	echo '<img src="/wp-content/uploads/2014/06/Grafico.jpg" class="text-center">';
-	echo '</div>';
-
+	
 //	Pega todos os posts do tipo noticias da categoria
 	$args = array(
 	   'post_type' => 'noticias',
@@ -272,9 +342,10 @@
 		echo '<h3 class="sing-tit">Notícias</h3>';
 		echo '<ul>';
 		foreach($noticias as $noticia) {
+			$link = get_post_meta($noticia->ID, 'link');
+			
 			echo '<li>';
-			echo '<div class="date">'.mysql2date('d/m/Y', $noticia->post_date).'</div>'; //data
-			echo '<div class="title"><a href="'.get_permalink($noticia->ID).'">'.$noticia->post_title.'</a></div>'; //titulo
+			echo '<div class="title"><a href='.$link[0].' target=_blank>'.$noticia->post_title.'</a></div>'; //titulo
 			echo '<div class="resume">'.$noticia->post_excerpt.'</div>'; //texto resumido
 			echo '<div class="hr"><hr></div>';
 			echo '</li>';
@@ -288,4 +359,4 @@
 	</div>
 </div>
 	
-<?php get_footer(); ?>	
+<?php get_footer(); ?>
