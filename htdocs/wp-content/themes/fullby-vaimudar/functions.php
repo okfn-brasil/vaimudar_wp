@@ -166,11 +166,16 @@ function register_cpt_obras() {
 }
 
 function wpb_adding_scripts() {
-	$url = get_template_directory_uri();
+	global $wp;
 	
-//	faltando verificar a action para carregar somente quando for rede de poder
-//	$home = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
-//	die(get_permalink());
+	$current_url 	= add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
+	$current_url 	= explode('/',$current_url);
+	
+	if(!in_array('redes-de-poder', $current_url)) {
+		return false;	
+	}
+	
+	$url = get_template_directory_uri();
 	
 	wp_register_script('chart', $url.'-vaimudar/js/chart.js', array('jquery'),'0.1', true);
 	wp_enqueue_script('chart');

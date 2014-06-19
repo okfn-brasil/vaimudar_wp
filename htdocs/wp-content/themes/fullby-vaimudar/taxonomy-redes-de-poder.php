@@ -22,22 +22,6 @@
 	$term_name 			= $term->name;
 	$term_description 	= $term->description; //contem a info do cnpj
 	$term_id			= $term->id;
-	
-//	$description	= explode(',', $term_description);
-//	$term_cnpj 		= explode(':', $description[0]);
-//	$type			= explode(':', $description[1]);
-//	
-//	preg_match('/(^\d{2})(\d{3})(\d{3})(\d{4})(\d{2}$)/', trim($term_cnpj[1]), $matches);
-//	if( $matches ) {
-//		$term_cnpj = $matches[1].'.'.$matches[2].'.'.$matches[3].'/'.$matches[4].'-'.$matches[5];
-//	} else {
-//		preg_match('/(^\d{3})(\d{3})(\d{3})(\d{2}$)/',trim($term_cnpj[1]), $matches);
-//		if($matches) {
-//			$term_cnpj = $matches[1].'.'.$matches[2].'.'.$matches[3].'-'.$matches[4];
-//		} else {
-//			$term_cnpj = 'Não informado';
-//		}
-//	}
 
 	if( in_array($category_name, $open_capital) ) {
 		$url_proprietarios = 'http://proprietariosdobrasil.org.br/proprietarios/'.$category_name;
@@ -108,10 +92,10 @@
 			
 		}
 		 
-//		$doacoes[] = array(
-//			'total_ano' 	=> $total_year,
-//			'total_partido' => $total_party
-//		);
+		$doacoes[] = array(
+			'total_ano' 	=> $total_year,
+			'total_partido' => $total_party
+		);
 		
 		echo '<div id="chart_data" value="'.trim(htmlentities(json_encode($doacoes))).'"></div>';
 	}
@@ -284,6 +268,22 @@
 	echo '<div class="chart item">';
 	echo '<h3 class="sing-tit">Distribuição por partido e ano</h3>';
 	echo '<div id="chart" style="width:600px;height:300px"></div>';
+	echo '</div>';
+	
+	echo '</ul>';
+	echo '</div>';
+	
+	echo '<div class="chart item">';
+	echo '<h3 class="sing-tit">Distribuição por partido e ano</h3>';
+	echo '<div id="chart_year" style="width:600px;height:300px"></div>';
+	echo '</div>';
+	
+	echo '</ul>';
+	echo '</div>';
+	
+	echo '<div class="chart item">';
+	echo '<h3 class="sing-tit">Distribuição por partido e ano</h3>';
+	echo '<div id="chart_party" style="width:600px;height:300px"></div>';
 	echo '</div>';
 	
 	echo '</ul>';
