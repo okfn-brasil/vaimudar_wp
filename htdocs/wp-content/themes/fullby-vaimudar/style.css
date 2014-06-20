@@ -116,6 +116,10 @@ a:focus, a:hover{color:#08ab9a; text-decoration: none;}
 	background-color: #111111;
 }
 
+.navbar-collapse .navbar-nav.navbar-right:last-child {
+	margin-right: 0;
+}
+
 #searchform button{
 	background-color: #0bd0bb;
 	border: none;
@@ -265,12 +269,106 @@ a:focus, a:hover{color:#08ab9a; text-decoration: none;}
 	text-transform: uppercase;
 }
 
+.obras-icon{
+	float: left;
+}
+.obras-title{
+	display: inline-block;
+	margin-left: 15px;
+	margin-top: 5px;
+}
+
+.obras-title .div0,
+.obras-title .div1{
+	margin-right: 1px;
+	padding: 15px 2px;
+	float: left;
+	background-color: #0bd0bb;
+	color: #fff;
+}
+
+.obras-title .div0{
+	background-color: #000000;
+}
+.obras-title .div1.content{
+	min-width: 120px;
+	padding: 5px 10px;
+	text-align: right;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin-left: 1px;
+}
+
 .obras-list .row{
-	border-bottom: 1px dashed #74cec5;
+	border-bottom: 1px dashed #dddddd;
 	padding: 10px 0;
+}
+.obras-list ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+.obras-list .local,
+.obras-list .ramification,
+.obras-list .info{
+	display: inline-block;
+}
+.obras-list ul li{
+	width: 100%;
+	border-bottom: 1px dashed #74cec5;
+	margin-bottom: 15px;
+}
+.obras-list ul .item{
+	display: table;
+	width: 100%;
+}
+.obras-list .local{
+	width: 35%;
+	display: table-cell;
+	vertical-align: middle;
+}
+.obras-list .ramification{
+	width: 5%;
+	display: table-cell;
+	vertical-align: middle;
+}
+.obras-list .ramification img{
+	margin-top: 3px;
+}
+.obras-list .info{
+	width: 60%;
+	display: table-cell;
+	vertical-align: middle;
+	padding-top: 25px;
+	
+}
+
+.obras-total{
+	margin-left: 15px;
+	margin-top: 5px;
+	font-size: 2.2em;
+	font-weight: bold;
+	color: #666;
+}
+.obras-list .info .custo,
+.obras-list .info .progresso,
+.obras-list .info .financiamento{
+	height: 50px;
+}
+.obras-list .info .progresso .concluido{
+	color: #58bc73;
+}
+.obras-list .info .progresso .abandonada{
+	color: #e25a5e;
+}
+.obras-list .info .progresso .incompleta{
+	color: #f3ab5f;
 }
 .chart h3{
 	font-size: 1.1em;
+}
+.chart.item{
+	margin-bottom: 40px;
 }
 .silver-box{
 	background-color: #f3f3f3;
@@ -298,4 +396,7 @@ ul.group-list li .content{
 }
 ul.group-list li .content .title a{
 	font-weight: bold;
+}
+.highlight{
+	color: #05dbc4;
 }
