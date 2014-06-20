@@ -1,4 +1,5 @@
 <?php
+add_filter('option_fullby_analytics',       'stripslashes');
 add_action('init', 'register_cpt_empresas', 0);
 add_action('init', 'register_cpt_analises', 0);
 add_action('init', 'register_cpt_noticias', 0);
