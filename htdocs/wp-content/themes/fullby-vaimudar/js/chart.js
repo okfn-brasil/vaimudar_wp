@@ -74,9 +74,15 @@ var $charts = function() {
 		choiceContainer.find("input").change(function(){
 				var $d = plotAccordingToChoices('chart', choiceContainer, $chart_data);
 				jQuery.plot('#chart', $d, options);
+				$('.legend').hide();
 		});
 		
 		jQuery.plot('#chart', $chart_data, options);
+		
+		$('.legendColorBox > div').each(function(i){
+			$(this).clone().prependTo($("#overviewLegend").find("li").eq(i));
+		});
+		$('.legend').hide();
 	}
 	
 	function plotAccordingToChoices(placeholder, choiceContainer, results) {
@@ -155,11 +161,7 @@ var $charts = function() {
 }();
 
 jQuery(document).ready(function() {
-	var $data 			= jQuery.parseJSON(jQuery('#chart_data').attr('value'));
-	
-	$('.legendColorBox > div').each(function(i){
-		$(this).clone().prependTo($("#overviewLegend").find("li").eq(i));
-	});
+	var $data = jQuery.parseJSON(jQuery('#chart_data').attr('value'));
 	
 	if( $data ) {
 		$charts.party_year_value($data);
