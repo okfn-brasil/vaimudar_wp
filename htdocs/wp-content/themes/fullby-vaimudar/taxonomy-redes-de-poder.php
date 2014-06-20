@@ -81,7 +81,7 @@
 		$partido = $rows[0]->partido;
 		
 		foreach ( $rows as $row ) {
-			if($row->partido != $partido) {
+			if( $row->partido != $partido ) {
 				$partido = $row->partido;
 			}
 	
@@ -267,14 +267,17 @@
 	//	Gráficos
 	echo '<div class="chart item">';
 	echo '<h3 class="sing-tit">Distribuição por partido e ano</h3>';
-	echo '<div id="chart" style="width:600px;height:300px"></div>';
+	echo '<div id="chart" style="width:800px;height:500px"></div>';
+	echo '<div id="miniature">';
+    echo '<ul id="overviewLegend">';
+    echo '</ul> </div>';
 	echo '</div>';
 	
 	echo '</ul>';
 	echo '</div>';
 	
 	echo '<div class="chart item">';
-	echo '<h3 class="sing-tit">Distribuição por partido e ano</h3>';
+	echo '<h3 class="sing-tit">Distribuição total por ano</h3>';
 	echo '<div id="chart_year" style="width:600px;height:300px"></div>';
 	echo '</div>';
 	
@@ -282,7 +285,7 @@
 	echo '</div>';
 	
 	echo '<div class="chart item">';
-	echo '<h3 class="sing-tit">Distribuição por partido e ano</h3>';
+	echo '<h3 class="sing-tit">Distribuição total por partido</h3>';
 	echo '<div id="chart_party" style="width:600px;height:300px"></div>';
 	echo '</div>';
 	
