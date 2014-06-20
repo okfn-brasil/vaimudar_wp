@@ -121,18 +121,51 @@
 	<div class="obras-list">
 	<h3 class="sing-tit">Obras</h3><br />
 	<div class="row">
-		<div class="col-md-2 text-center">
+		<div class="obras-icon">
 			<img src="<?php bloginfo('stylesheet_directory')?>/img/icon_stadium.png" class="img-responsive">
 		</div>
-		<div class="col-md-10">
+		<div class="obras-title">
+			<div class="div0"></div>
+			<div class="div1"></div>
+			<div class="div1 content">Estádios</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
 	<?php
 		echo '		<ul>';
 		foreach($obras as $obra) {
-			echo '			<li class="item">';
-			echo '				<a href="' . get_permalink($obra->ID) . '">'.$obra->post_title.'</a>'; //titulo
-			echo '			</li>';
+			echo '			<li><div class="item">';
+			echo '				<div class="local">';
+			echo '					<a href="' . get_permalink($obra->ID) . '">'.$obra->post_title.'</a>'; //titulo
+			echo '				</div>';
+			echo '				<div class="ramification">';
+			echo '					<img src="http://vaimudar.org/wp-content/uploads/2014/06/ramification.png">';
+			echo '				</div>';
+			echo '				<div class="info">';
+			echo '					<div class="custo">';
+			echo '						<strong>Custo: </strong>' . 'R$XX,XX';
+			echo '					</div>';
+			echo '					<div class="progresso">';
+			echo '						<strong>Progresso: </strong>' . '<span class="concluido">Obra Concluída</span>';
+			echo '					</div>';
+			echo '					<div class="financiamento">';
+			echo '						<strong>Financiamento Federal: </strong>' . 'R$XX,XX';
+			echo '					</div>';
+			echo '				</div>';
+			echo '			</div></li>';
 		}
 		echo '		</ul>';
+
+		echo '<div class="obras-title">';
+		echo '<div class="div0"></div>';
+		echo '<div class="div1"></div>';
+		echo '<div class="div1 content">Total em obras</div>';
+		echo '</div>';
+		echo '<div class="obras-total">';
+		echo 'R$ 5,6 bilhões';
+		echo '</div>';
+
 		echo '	</div>';
 		echo '</div>';
 		echo '</div>';
@@ -213,8 +246,27 @@
 	}
 	echo '</ul>';
 	echo '</div>';
+
+//	Gráficos
+	echo '<div class="chart-list">';
+	echo '<h3 class="sing-tit">Doações</h3>';
+	echo '<div class="chart item">';
+	echo '<h3 class="sing-tit highlight">Distribuições por partido e ano</h3>';
+	echo '<img src="/wp-content/uploads/2014/06/Grafico1.jpg" class="text-center">';
+	echo '</div>';
+	echo '<div class="chart item">';
+	echo '<h3 class="sing-tit highlight">Distribuição total das empresas por ano</h3>';
+	echo '<img src="/wp-content/uploads/2014/06/Grafico2.jpg" class="text-center">';
+	echo '</div>';
+	echo '<div class="chart item">';
+	echo '<h3 class="sing-tit highlight">Total de doações por partido</h3>';
+	echo '<img src="/wp-content/uploads/2014/06/Grafico3.jpg" class="text-center">';
+	echo '</div>';
+	echo '</div>';
 	
 ?>
+
+
 	</div>					
 	</div>					
 	<div class="col-md-3 redes-sidebar">
@@ -247,11 +299,6 @@
 		echo '<li><div class="resume">Nenhuma empresa</div></li>'; //titulo
 	}
 	echo '</ul>';
-	echo '</div>';
-//	Gráficos
-	echo '<div class="chart item">';
-	echo '<h3 class="sing-tit">Distribuição por partido e ano</h3>';
-	echo '<img src="/wp-content/uploads/2014/06/Grafico.jpg" class="text-center">';
 	echo '</div>';
 
 //	Pega todos os posts do tipo noticias da categoria
