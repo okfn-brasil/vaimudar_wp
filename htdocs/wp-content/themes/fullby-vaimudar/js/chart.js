@@ -48,10 +48,6 @@ var $charts = function() {
 		    }).appendTo(li);
 		});
 		
-		$('.legendColorBox > div').each(function(i){
-			$(this).clone().prependTo(choiceContainer.find("li").eq(i));
-		});
-		
 		var previousPoint = null;
 		$("#chart").bind("plothover", function(event, pos, item) {
 		    $("#x").text(pos.x.toFixed(2));
@@ -160,6 +156,10 @@ var $charts = function() {
 
 jQuery(document).ready(function() {
 	var $data 			= jQuery.parseJSON(jQuery('#chart_data').attr('value'));
+	
+	$('.legendColorBox > div').each(function(i){
+		$(this).clone().prependTo($("#overviewLegend").find("li").eq(i));
+	});
 	
 	if( $data ) {
 		$charts.party_year_value($data);
