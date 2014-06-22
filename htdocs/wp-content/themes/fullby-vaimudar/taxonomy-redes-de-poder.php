@@ -146,8 +146,9 @@
 			<br /><br />
 		
 <?php
-	$title_obra 	= true;
-	$total_obras 	= 0;
+	$title_obra 		= true;
+	$total_obras 		= 0;
+	$link_transparencia = 'http://www.portaltransparencia.gov.br/copa2014/cidades/execucao.seam?empreendimento=';
 	
 //	Pega todos os posts do tipo obras da categoria do tipo estádios
 	$args = array(
@@ -169,9 +170,11 @@
 			),
 	);
 	
+	
 	$obras = get_posts($args);
 	if($obras) :
 	$title_obra = false;
+	
 ?>
 		<div class="obras-list">
 		<h3 class="sing-tit">Obras</h3><br />
@@ -193,7 +196,7 @@
 				$total_obras += get_post_meta($obra->ID, 'valor_previsto_transp', 1);
 				echo '			<li><div class="item">';
 				echo '				<div class="local">';
-				echo '					<a href="' . get_permalink($obra->ID) . '">'.$obra->post_title.'</a>'; //titulo
+				echo '					<a href="' . $link_transparencia . get_post_meta($obra->ID, 'id_transp', 1). '" target=_blank>'.$obra->post_title.'</a>'; //titulo
 				echo '				</div>';
 				echo '				<div class="ramification">';
 				echo '					<img src="http://vaimudar.org/wp-content/uploads/2014/06/ramification.png">';
@@ -215,7 +218,12 @@
 				echo '						<strong>Valor financiado: </strong>' . 'R$ '.number_format(get_post_meta($obra->ID, 'valor_financiado_transp', 1), 2, ',', '.');
 				echo '					</div>';
 				echo '					<div class="progresso">';
-				echo '						<strong>Progresso: </strong>' . '<span class="concluido">'.get_post_meta($obra->ID, 'progresso_transp', 1).'</span>';
+				echo '						<strong>Progresso: </strong>' . 
+												'<span class="concluido">';
+				echo									trim(get_post_meta($obra->ID, 'progresso_transp', 1)) != 'Não informado' ? 
+														get_post_meta($obra->ID, 'progresso_transp', 1).'%' :
+														get_post_meta($obra->ID, 'progresso_transp', 1) 
+											.'</span>';
 				echo '					</div>';
 				echo '				</div>';
 				echo '			</div></li>';
@@ -269,7 +277,7 @@
 				
 				echo '			<li><div class="item">';
 				echo '				<div class="local">';
-				echo '					<a href="' . get_permalink($obra->ID) . '">'.$obra->post_title.'</a>'; //titulo
+				echo '					<a href="' . $link_transparencia . get_post_meta($obra->ID, 'id_transp', 1) . '" target=_blank>'.$obra->post_title.'</a>'; //titulo
 				echo '				</div>';
 				echo '				<div class="ramification">';
 				echo '					<img src="http://vaimudar.org/wp-content/uploads/2014/06/ramification.png">';
@@ -291,7 +299,12 @@
 				echo '						<strong>Valor financiado: </strong>' . 'R$ '.number_format(get_post_meta($obra->ID, 'valor_financiado_transp', 1), 2, ',', '.');
 				echo '					</div>';
 				echo '					<div class="progresso">';
-				echo '						<strong>Progresso: </strong>' . '<span class="concluido">'.get_post_meta($obra->ID, 'progresso_transp', 1).'</span>';
+				echo '						<strong>Progresso: </strong>' . 
+												'<span class="concluido">';
+				echo									trim(get_post_meta($obra->ID, 'progresso_transp', 1)) != 'Não informado' ? 
+														get_post_meta($obra->ID, 'progresso_transp', 1).'%' :
+														get_post_meta($obra->ID, 'progresso_transp', 1) 
+											.'</span>';
 				echo '					</div>';
 				echo '				</div>';
 				echo '			</div></li>';
