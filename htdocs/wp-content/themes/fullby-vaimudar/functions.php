@@ -175,7 +175,7 @@ function wpb_adding_scripts() {
 	if(!in_array('redes-de-poder', $current_url)) {
 		return false;	
 	}
-	
+
 	$url = get_template_directory_uri();
 	
 	wp_register_script('chart', $url.'-vaimudar/js/chart.js', array('jquery'),'0.1', true);

@@ -369,6 +369,21 @@ a:focus, a:hover{color:#08ab9a; text-decoration: none;}
 }
 .chart.item{
 	margin-bottom: 40px;
+	position: relative;
+}
+
+.chart.item #miniature{
+	position: absolute;
+	top: 50px;
+	right: 0;
+	max-width: 180px;
+}
+.chart.item #miniature ul li{
+	float: left;
+	margin-right: 5px;
+}
+.chart.item #miniature ul li div{
+	border: none;
 }
 .silver-box{
 	background-color: #f3f3f3;
@@ -400,3 +415,4 @@ ul.group-list li .content .title a{
 .highlight{
 	color: #05dbc4;
 }
+

@@ -28,7 +28,7 @@
 	} else {
 		$url_proprietarios = false;
 	}
-	echo $term_name;
+	
 //	gráficos
 	$total_year = $wpdb->get_results(
 		"select 
@@ -296,6 +296,8 @@
 		echo '<div class="hr"><hr></div>';
 		echo '</li>';
 	}
+    echo '</ul>';
+	echo '</div>';
 	
 	//	Gráficos
 	if( $doacoes ) {
