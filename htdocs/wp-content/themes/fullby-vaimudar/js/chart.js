@@ -164,7 +164,7 @@ jQuery(document).ready(function() {
 	var $data = jQuery.parseJSON(jQuery('#chart_data').attr('value'));
 	
 	if( $data ) {
-		alert($data);
+		
 		$charts.party_year_value($data);
 		
 		if($data[0]) {
