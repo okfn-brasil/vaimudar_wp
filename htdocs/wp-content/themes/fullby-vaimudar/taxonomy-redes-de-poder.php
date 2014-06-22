@@ -296,6 +296,8 @@
 		echo '<div class="hr"><hr></div>';
 		echo '</li>';
 	}
+    echo '</ul>';
+	echo '</div>';
 	
 	//	Gráficos
 	echo '<div class="chart-list">';
@@ -305,10 +307,8 @@
 	echo '<div id="chart" style="width:800px;height:500px"></div>';
 	echo '<div id="miniature">';
     echo '<ul id="overviewLegend">';
-    echo '</ul> </div>';
+    echo '</ul>';
 	echo '</div>';
-	
-	echo '</ul>';
 	echo '</div>';
 	
 	echo '<div class="chart item">';
@@ -316,16 +316,11 @@
 	echo '<div id="chart_year" style="width:600px;height:300px"></div>';
 	echo '</div>';
 	
-	echo '</ul>';
-	echo '</div>';
-	
 	echo '<div class="chart item">';
 	echo '<h3 class="sing-tit">Distribuição total por partido</h3>';
 	echo '<div id="chart_party" style="width:600px;height:300px"></div>';
 	echo '</div>';
 	
-	echo '</ul>';
-	echo '</div>';
 	echo '</div>';
 
 //	Gráficos
