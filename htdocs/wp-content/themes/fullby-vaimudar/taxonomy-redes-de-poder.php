@@ -146,8 +146,10 @@
 			<br /><br />
 		
 <?php
+	$title_obra 	= true;
+	$total_obras 	= 0;
 	
-//	Pega todos os posts do tipo obras da categoria
+//	Pega todos os posts do tipo obras da categoria do tipo estádios
 	$args = array(
 	   'post_type' => 'obras',
 	   'tax_query' => array(
@@ -168,63 +170,59 @@
 	);
 	
 	$obras = get_posts($args);
-	if($obras) {
+	if($obras) :
+	$title_obra = false;
 ?>
-	<div class="obras-list">
-	<h3 class="sing-tit">Obras</h3><br />
-	<div class="row">
-		<div class="obras-icon">
-			<img src="<?php bloginfo('stylesheet_directory')?>/img/icon_stadium.png" class="img-responsive">
+		<div class="obras-list">
+		<h3 class="sing-tit">Obras</h3><br />
+		<div class="row">
+			<div class="obras-icon">
+				<img src="<?php bloginfo('stylesheet_directory')?>/img/icon_stadium.png" class="img-responsive">
+			</div>
+			<div class="obras-title">
+				<div class="div0"></div>
+				<div class="div1"></div>
+				<div class="div1 content">Estádios</div>
+			</div>
 		</div>
-		<div class="obras-title">
-			<div class="div0"></div>
-			<div class="div1"></div>
-			<div class="div1 content">Estádios</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-	<?php
+		<div class="row">
+			<div class="col-md-12">
+<?php
 		echo '		<ul>';
-		foreach($obras as $obra) {
-			echo '			<li><div class="item">';
-			echo '				<div class="local">';
-			echo '					<a href="' . get_permalink($obra->ID) . '">'.$obra->post_title.'</a>'; //titulo
-			echo '				</div>';
-			echo '				<div class="ramification">';
-			echo '					<img src="http://vaimudar.org/wp-content/uploads/2014/06/ramification.png">';
-			echo '				</div>';
-			echo '				<div class="info">';
-			echo '					<div class="custo">';
-			echo '						<strong>Custo: </strong>' . 'R$XX,XX';
-			echo '					</div>';
-			echo '					<div class="progresso">';
-			echo '						<strong>Progresso: </strong>' . '<span class="concluido">Obra Concluída</span>';
-			echo '					</div>';
-			echo '					<div class="financiamento">';
-			echo '						<strong>Financiamento Federal: </strong>' . 'R$XX,XX';
-			echo '					</div>';
-			echo '				</div>';
-			echo '			</div></li>';
-		}
+			foreach($obras as $obra) :
+				$total_obras += get_post_meta($obra->ID, 'valor_previsto_transp', 1);
+				echo '			<li><div class="item">';
+				echo '				<div class="local">';
+				echo '					<a href="' . get_permalink($obra->ID) . '">'.$obra->post_title.'</a>'; //titulo
+				echo '				</div>';
+				echo '				<div class="ramification">';
+				echo '					<img src="http://vaimudar.org/wp-content/uploads/2014/06/ramification.png">';
+				echo '				</div>';
+				echo '				<div class="info">';
+				echo '					<div class="custo">';
+				echo '						<strong>UF: </strong>' .get_post_meta($obra->ID, 'uf', 1);
+				echo '					</div>';
+				echo '					<div class="custo">';
+				echo '						<strong>Custo previsto: </strong>' . 'R$ '.number_format(get_post_meta($obra->ID, 'valor_previsto_transp', 1), 2, ',', '.');
+				echo '					</div>';
+				echo '					<div class="custo">';
+				echo '						<strong>Valor executado: </strong>' . 'R$ '.number_format(get_post_meta($obra->ID, 'valor_executado_transp', 1), 2, ',', '.');
+				echo '					</div>';
+				echo '					<div class="financiamento">';
+				echo '						<strong>Financiador: </strong>'.get_post_meta($obra->ID, 'financiador_transp', 1);
+				echo '					</div>';
+				echo '					<div class="financiamento">';
+				echo '						<strong>Valor financiado: </strong>' . 'R$ '.number_format(get_post_meta($obra->ID, 'valor_financiado_transp', 1), 2, ',', '.');
+				echo '					</div>';
+				echo '					<div class="progresso">';
+				echo '						<strong>Progresso: </strong>' . '<span class="concluido">'.get_post_meta($obra->ID, 'progresso_transp', 1).'</span>';
+				echo '					</div>';
+				echo '				</div>';
+				echo '			</div></li>';
+			endforeach;
 		echo '		</ul>';
+	endif;
 
-		echo '<div class="obras-title">';
-		echo '<div class="div0"></div>';
-		echo '<div class="div1"></div>';
-		echo '<div class="div1 content">Total em obras</div>';
-		echo '</div>';
-		echo '<div class="obras-total">';
-		echo 'R$ 5,6 bilhões';
-		echo '</div>';
-
-		echo '	</div>';
-		echo '</div>';
-		echo '</div>';
-	}
-?>
-
-<?php 
 	$args = array(
 	   'post_type' => 'obras',
 	   'tax_query' => array(
@@ -243,26 +241,79 @@
 			)
 		),
 	);
+	
 	$obras = get_posts($args);
-	if($obras) {
+	
+	if($obras) :
 ?>
-	<div class="row">
-		<div class="col-md-2 text-center">
-			<img src="<?php bloginfo('stylesheet_directory')?>/img/icon_transport.png" class="img-responsive">
+	<?php if ($title_obra):?>
+		<div class="obras-list">
+		<h3 class="sing-tit">Obras</h3><br />
+	<?php endif;?>
+		<div class="row">
+			<div class="obras-icon">
+				<img src="<?php bloginfo('stylesheet_directory')?>/img/icon_transport.png" class="img-responsive">
+			</div>
+			<div class="obras-title">
+				<div class="div0"></div>
+				<div class="div1"></div>
+				<div class="div1 content">Mobilidade urbana</div>
+			</div>
 		</div>
-		<div class="col-md-10">
-	<?php
-		echo '		<ul>';
-		foreach($obras as $obra) {
-			echo '			<li class="item">';
-			echo '				<a href="' . get_permalink($obra->ID) . '">'.$obra->post_title.'</a>'; //titulo
-			echo '			</li>';
-		}
-		echo '		</ul>';
-		echo '	</div>';
+		<div class="row">
+			<div class="col-md-12">
+		<?php
+			echo '		<ul>';
+			foreach($obras as $obra) :
+				$total_obras += get_post_meta($obra->ID, 'valor_previsto_transp', 1);
+				
+				echo '			<li><div class="item">';
+				echo '				<div class="local">';
+				echo '					<a href="' . get_permalink($obra->ID) . '">'.$obra->post_title.'</a>'; //titulo
+				echo '				</div>';
+				echo '				<div class="ramification">';
+				echo '					<img src="http://vaimudar.org/wp-content/uploads/2014/06/ramification.png">';
+				echo '				</div>';
+				echo '				<div class="info">';
+				echo '					<div class="custo">';
+				echo '						<strong>UF: </strong>' .get_post_meta($obra->ID, 'uf', 1);
+				echo '					</div>';
+				echo '					<div class="custo">';
+				echo '						<strong>Custo previsto: </strong>' . 'R$ '.number_format(get_post_meta($obra->ID, 'valor_previsto_transp', 1), 2, ',', '.');
+				echo '					</div>';
+				echo '					<div class="custo">';
+				echo '						<strong>Valor executado: </strong>' . 'R$ '.number_format(get_post_meta($obra->ID, 'valor_executado_transp', 1), 2, ',', '.');
+				echo '					</div>';
+				echo '					<div class="financiamento">';
+				echo '						<strong>Financiador: </strong>'.get_post_meta($obra->ID, 'financiador_transp', 1);
+				echo '					</div>';
+				echo '					<div class="financiamento">';
+				echo '						<strong>Valor financiado: </strong>' . 'R$ '.number_format(get_post_meta($obra->ID, 'valor_financiado_transp', 1), 2, ',', '.');
+				echo '					</div>';
+				echo '					<div class="progresso">';
+				echo '						<strong>Progresso: </strong>' . '<span class="concluido">'.get_post_meta($obra->ID, 'progresso_transp', 1).'</span>';
+				echo '					</div>';
+				echo '				</div>';
+				echo '			</div></li>';
+			endforeach;
+			echo '		</ul>';
+		
+		endif;
+ 
+		if( $total_obras ) :
+			echo '<div class="obras-title">';
+			echo '<div class="div0"></div>';
+			echo '<div class="div1"></div>';
+			echo '<div class="div1 content">Total em obras</div>';
+			echo '</div>';
+			echo '<div class="obras-total">';
+			echo 'R$ '.number_format($total_obras,2, ',', '.');
+			echo '</div>';
+		endif;
+
 		echo '</div>';
-		echo '<br />';
-	}
+		echo '</div>';
+		echo '</div>';
 	
 //	Pega todos os posts do tipo analises da categoria
 	$args = array(
