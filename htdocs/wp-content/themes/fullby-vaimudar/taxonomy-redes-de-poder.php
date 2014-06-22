@@ -28,7 +28,7 @@
 	} else {
 		$url_proprietarios = false;
 	}
-	
+	echo $term_name;
 //	gráficos
 	$total_year = $wpdb->get_results(
 		"select 
@@ -298,55 +298,39 @@
 	}
 	
 	//	Gráficos
-	echo '<div class="chart-list">';
-	echo '<h3 class="sing-tit">Doações</h3>';
-	echo '<div class="chart item">';
-	echo '<h3 class="sing-tit">Distribuição por partido e ano</h3>';
-	echo '<div id="chart" style="width:800px;height:500px"></div>';
-	echo '<div id="miniature">';
-    echo '<ul id="overviewLegend">';
-    echo '</ul> </div>';
-	echo '</div>';
-	
-	echo '</ul>';
-	echo '</div>';
-	
-	echo '<div class="chart item">';
-	echo '<h3 class="sing-tit">Distribuição total por ano</h3>';
-	echo '<div id="chart_year" style="width:600px;height:300px"></div>';
-	echo '</div>';
-	
-	echo '</ul>';
-	echo '</div>';
-	
-	echo '<div class="chart item">';
-	echo '<h3 class="sing-tit">Distribuição total por partido</h3>';
-	echo '<div id="chart_party" style="width:600px;height:300px"></div>';
-	echo '</div>';
-	
-	echo '</ul>';
-	echo '</div>';
-	echo '</div>';
-
-//	Gráficos
-//	echo '<div class="chart-list">';
-//	echo '<h3 class="sing-tit">Doações</h3>';
-//	echo '<div class="chart item">';
-//	echo '<h3 class="sing-tit highlight">Distribuições por partido e ano</h3>';
-//	echo '<img src="/wp-content/uploads/2014/06/Grafico1.jpg" class="text-center">';
-//	echo '</div>';
-//	echo '<div class="chart item">';
-//	echo '<h3 class="sing-tit highlight">Distribuição total das empresas por ano</h3>';
-//	echo '<img src="/wp-content/uploads/2014/06/Grafico2.jpg" class="text-center">';
-//	echo '</div>';
-//	echo '<div class="chart item">';
-//	echo '<h3 class="sing-tit highlight">Total de doações por partido</h3>';
-//	echo '<img src="/wp-content/uploads/2014/06/Grafico3.jpg" class="text-center">';
-//	echo '</div>';
-//	echo '</div>';
+	if( $doacoes ) {
+		echo '<div class="chart-list">';
+		echo '<h3 class="sing-tit">Doações</h3>';
+		echo '<div class="chart item">';
+		echo '<h3 class="sing-tit">Distribuição por partido e ano</h3>';
+		echo '<div id="chart" style="width:800px;height:500px"></div>';
+		echo '<div id="miniature">';
+	    echo '<ul id="overviewLegend">';
+	    echo '</ul> </div>';
+		echo '</div>';
+		
+		echo '</ul>';
+		echo '</div>';
+		
+		echo '<div class="chart item">';
+		echo '<h3 class="sing-tit">Distribuição total por ano</h3>';
+		echo '<div id="chart_year" style="width:600px;height:300px"></div>';
+		echo '</div>';
+		
+		echo '</ul>';
+		echo '</div>';
+		
+		echo '<div class="chart item">';
+		echo '<h3 class="sing-tit">Distribuição total por partido</h3>';
+		echo '<div id="chart_party" style="width:600px;height:300px"></div>';
+		echo '</div>';
+		
+		echo '</ul>';
+		echo '</div>';
+		echo '</div>';
+	}
 	
 ?>
-
 
 	</div>					
 	</div>					
