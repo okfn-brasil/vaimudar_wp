@@ -14,7 +14,15 @@ var $charts = function() {
 		    },
 		    grid: {
 		        hoverable: true
+		    },
+		    xaxis: {
+		    	tickDecimals: 0
 		    }
+//		    yaxis: {
+//		    	tickFormatter: function(val, axis) {
+//		    		return jQuery.maskMoney(val);
+//		    	} 
+//		    }
 		};
 	
 //	Gráfico de linhas partidos x ano x repasse
@@ -124,6 +132,28 @@ var $charts = function() {
 			$final_data.push( [ $total_year[$i]['ano'], $total_year[$i]['max_year'] ] );
 		}
 		
+		var previousPoint = null;
+		$("#chart_year").bind("plothover", function(event, pos, item) {
+		    $("#x").text(pos.x.toFixed(2));
+		    $("#y").text(pos.y.toFixed(2));
+
+		    if (item) {
+		    	
+		        if (previousPoint != item.datapoint) {
+		            previousPoint = item.datapoint;
+
+		            $("#tooltip").remove();
+		            var x = item.datapoint[0].toFixed(2),
+		                y = item.datapoint[1].toFixed(2);
+		            
+		            showTooltip(item.pageX, item.pageY, Math.round(x) + " - R$ " + y);
+		        }
+		    } else {
+		        $("#tooltip").remove();
+		        previousPoint = null;
+		    }
+		});
+		
 		$chart_year.push( { data: $final_data } );
 		jQuery.plot('#chart_year', $chart_year, options);
 	}
@@ -146,8 +176,8 @@ var $charts = function() {
 				    bars: {  
 				        show: true,  
 				        horizontal: true  
-				    }  
-				}  
+				    }
+				}
 			],  
 			{ yaxis: { ticks: $tick_labels } }  
 		);
