@@ -2,7 +2,8 @@ var $charts = function() {
 	var choiceContainer = $("#overviewLegend");
 	var options = {
 		    legend: {
-		        show: true
+		        show: true,
+				 labelBoxBorderColor: "none"
 		    },
 		    series: {
 		        points: {
@@ -49,7 +50,7 @@ var $charts = function() {
 		    l = val.label;
 		    var li = $('<li />').appendTo(choiceContainer);
 		    
-		    $('<input name="' + l + '" id="' + l + '" type="checkbox" checked="checked" />').appendTo(li);
+		    $('<input name="' + l + '" id="' + l + '" type="checkbox" checked="checked" />').prependTo(li);
 		    $('<label>', {
 		        text: l, 
 		        'for': l
