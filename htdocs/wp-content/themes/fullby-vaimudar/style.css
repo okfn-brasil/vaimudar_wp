@@ -109,7 +109,7 @@ a:focus, a:hover{color:#08ab9a; text-decoration: none;}
 }
 #mainmenu ul.social li a{
 	padding-top: 16px;
-	padding-bottom: 12px;
+	padding-bottom: 11px;
 	background-color: #282828;
 }
 #mainmenu ul.social li a:hover{
@@ -257,13 +257,13 @@ a:focus, a:hover{color:#08ab9a; text-decoration: none;}
 }
 .redes-title{
 	position: fixed;
-	top: 52px;
+	top: 50px;
 	z-index: 1200;
 	background-image: url('img/bg_under_text.png');
 	width: 100%;
 }
 .admin-bar .redes-title{
-	top: 82px;
+	top: 80px;
 }
 .redes-title .text{
 	color: #fff;
@@ -343,7 +343,7 @@ a:focus, a:hover{color:#08ab9a; text-decoration: none;}
 	width: 60%;
 	display: table-cell;
 	vertical-align: middle;
-	padding-top: 25px;
+	padding-top: 10px;
 }
 
 .obras-total{
@@ -356,7 +356,7 @@ a:focus, a:hover{color:#08ab9a; text-decoration: none;}
 .obras-list .info .custo,
 .obras-list .info .progresso,
 .obras-list .info .financiamento{
-	height: 50px;
+	height: 22px;
 }
 .obras-list .info .progresso .concluido{
 	color: #58bc73;

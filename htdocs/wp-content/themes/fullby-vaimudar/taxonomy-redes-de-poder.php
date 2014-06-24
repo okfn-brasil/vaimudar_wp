@@ -102,12 +102,12 @@
 
 ?>
 
-<div class="redes-header" style="background-image: url('<?php bloginfo('stylesheet_directory'); ?>/img/obras.jpg');">
-	<div class="title row">
-		<div class="col-md-10 col-md-offset-1 text">
-			<?php echo $term_name; ?>
-		</div>
+<div class="redes-title row">
+	<div class="col-md-10 col-md-offset-1 text">
+		<?php echo $term_name; ?>
 	</div>
+</div>
+<div class="redes-header" style="background-image: url('<?php bloginfo('stylesheet_directory'); ?>/img/obras.jpg');">
 </div>
 <div class="col-md-10 col-md-offset-1 redes-wrapper">
 	<div class="row">		
@@ -375,15 +375,9 @@
 	    echo '</ul> </div>';
 		echo '</div>';
 		
-		echo '</ul>';
-		echo '</div>';
-		
 		echo '<div class="chart item">';
 		echo '<h3 class="sing-tit">Distribuição total por ano</h3>';
 		echo '<div id="chart_year" style="width:600px;height:300px"></div>';
-		echo '</div>';
-		
-		echo '</ul>';
 		echo '</div>';
 		
 		echo '<div class="chart item">';
@@ -391,8 +385,6 @@
 		echo '<div id="chart_party" style="width:600px;height:300px"></div>';
 		echo '</div>';
 		
-		echo '</ul>';
-		echo '</div>';
 		echo '</div>';
 	}
 	
