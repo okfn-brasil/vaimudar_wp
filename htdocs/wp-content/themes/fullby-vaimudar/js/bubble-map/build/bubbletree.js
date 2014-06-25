@@ -88,6 +88,7 @@ var BubbleTree = function(config, onHover, onUnHover) {
 	 * is either called directly or by $.ajax when data json file is loaded
 	 */
 	me.setData = function(data) {
+		console.log(data);
 		var me = this;
 		if (!data) data = me.config.data; // IE fix
 		me.initData(data);

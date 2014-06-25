@@ -167,14 +167,14 @@ function register_cpt_obras() {
 }
 
 
-if( is_page('Home') && !is_admin() ) {
+if( is_page('Home') ) {
 	 add_action("wp_enqueue_scripts", "my_jquery_enqueue", 11);
 }
 
 function my_jquery_enqueue() {
    wp_deregister_script('jquery');
    wp_register_script('jquery', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . 
-        "://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js", false, null);
+        "://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js", false, null);
    wp_enqueue_script('jquery');
 }
 
@@ -215,9 +215,6 @@ function wpb_adding_scripts() {
 		
 		wp_register_script('vis4', $url.'-vaimudar/js/bubble-map/lib/vis4.js', array('jquery'),'1.0', true);
 		wp_enqueue_script('vis4');
-		
-		wp_register_script('bubbletree-home', $url.'-vaimudar/js/bubble-map/lib/bubbletree.home.js', array('jquery'),'1.0', false);
-		wp_enqueue_script('bubbletree-home');
 		
 		wp_register_script('bubbletree', $url.'-vaimudar/js/bubble-map/build/bubbletree.js', array('jquery'),'1.0', false);
 		wp_enqueue_script('bubbletree');
