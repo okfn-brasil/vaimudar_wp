@@ -192,6 +192,9 @@ function wpb_adding_scripts() {
 		
 		wp_register_script('flot', $url.'-vaimudar/js/flot/jquery.flot.js', array('jquery'),'1.1', true);
 		wp_enqueue_script('flot');
+		
+		wp_register_script('accounting', $url.'-vaimudar/js/accounting.min.js', array('jquery'),'1.1', true);
+		wp_enqueue_script('accounting');
 				
 	} elseif(is_page('Home')) {
 	
