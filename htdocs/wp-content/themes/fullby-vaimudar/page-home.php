@@ -1,13 +1,12 @@
 <?php get_header(); ?>			
 		
-	<div class="col-md-9 cont-grid">
+	<div class="col-md-9">
 	 <div>
 		 <div class="bubbletree-wrapper">
 	     	<div class="bubbletree"></div>
 	     </div>
      </div>
-     
-     
+	 <div class="cont-grid">
      <script>
 	     jQuery(function() {
 	         
