@@ -220,7 +220,6 @@ a:focus, a:hover{color:#08ab9a; text-decoration: none;}
 	margin-bottom: 10px;
 }
 .articles-list .hr{
-	padding: 0 5%;
 }
 
 .redes-sidebar .articles-list .date,
@@ -303,7 +302,10 @@ a:focus, a:hover{color:#08ab9a; text-decoration: none;}
 	margin-left: 1px;
 }
 
-.obras-list .row{
+.obras-list {
+	margin-bottom: 40px;
+}
+.obras-list .row.obras-header{
 	border-bottom: 1px dashed #dddddd;
 	padding: 10px 0;
 }

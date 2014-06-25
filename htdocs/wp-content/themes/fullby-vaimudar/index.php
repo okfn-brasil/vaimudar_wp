@@ -2,6 +2,15 @@
 
 		<div class="col-md-9 cont-grid">
 		
+		<?php if (is_home()){ ?>
+		<div>
+			<div class="bubbletree-wrapper">
+			<div class="bubbletree"></div>
+			</div>
+		</div>
+		
+		<? } ?>
+		
 		<?php // if is home and is not paged show featured post
 		
 		/*
