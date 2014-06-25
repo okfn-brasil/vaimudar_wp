@@ -376,17 +376,24 @@ a:focus, a:hover{color:#08ab9a; text-decoration: none;}
 }
 
 .chart.item #miniature{
-	position: absolute;
-	top: 50px;
-	right: 0;
-	max-width: 180px;
+	margin-top: 50px;
+	max-width: 800px;
+}
+.chart.item #miniature ul{
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	text-align: center;
 }
 .chart.item #miniature ul li{
-	float: left;
-	margin-right: 5px;
+	display: inline-block;
+	margin-right: 10px;
 }
 .chart.item #miniature ul li div{
 	border: none;
+}
+.chart.item #miniature ul li div:first-child{
+	display: inline-block
 }
 .silver-box{
 	background-color: #f3f3f3;
