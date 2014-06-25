@@ -184,7 +184,8 @@ function wpb_adding_scripts() {
 	$current_url 	= add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
 	$current_url 	= explode('/',$current_url);
 	
-	$url = get_template_directory_uri();
+//	$url = get_template_directory_uri();
+	$url = 'http://teste.vaimudar.org/wp-content/themes/fullby';
 	
 	if(in_array('redes-de-poder', $current_url)) {
 		wp_register_script('chart', $url.'-vaimudar/js/chart.js', array('jquery'),'0.1', true);
