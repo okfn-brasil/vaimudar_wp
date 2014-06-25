@@ -178,7 +178,7 @@
 ?>
 		<div class="obras-list">
 		<h3 class="sing-tit">Obras</h3><br />
-		<div class="row">
+		<div class="row obras-header">
 			<div class="obras-icon">
 				<img src="<?php bloginfo('stylesheet_directory')?>/img/icon_stadium.png" class="img-responsive">
 			</div>
@@ -229,6 +229,8 @@
 				echo '			</div></li>';
 			endforeach;
 		echo '		</ul>';
+		echo '</div>';
+		echo '</div>';
 	endif;
 
 	$args = array(
@@ -258,7 +260,7 @@
 		<div class="obras-list">
 		<h3 class="sing-tit">Obras</h3><br />
 	<?php endif;?>
-		<div class="row">
+		<div class="row obras-header">
 			<div class="obras-icon">
 				<img src="<?php bloginfo('stylesheet_directory')?>/img/icon_transport.png" class="img-responsive">
 			</div>
@@ -310,6 +312,8 @@
 				echo '			</div></li>';
 			endforeach;
 			echo '		</ul>';
+			echo '</div>';
+			echo '</div>';
 		
 		endif;
  
@@ -323,10 +327,7 @@
 			echo 'R$ '.number_format($total_obras,2, ',', '.');
 			echo '</div>';
 		endif;
-
-		echo '</div>';
-		echo '</div>';
-		echo '</div>';
+	echo '</div>';
 	
 //	Pega todos os posts do tipo analises da categoria
 	$args = array(
@@ -372,24 +373,24 @@
 		echo '<div id="chart" style="width:800px;height:500px"></div>';
 		echo '<div id="miniature">';
 	    echo '<ul id="overviewLegend">';
-	    echo '</ul> </div>';
+	    echo '</ul>';
+		echo '</div>';
 		echo '</div>';
 		
 		echo '<div class="chart item">';
 		echo '<h3 class="sing-tit">Distribuição total por ano</h3>';
-		echo '<div id="chart_year" style="width:600px;height:300px"></div>';
+		echo '<div id="chart_year" style="width:800px;height:500px"></div>';
 		echo '</div>';
 		
 		echo '<div class="chart item">';
 		echo '<h3 class="sing-tit">Distribuição total por partido</h3>';
-		echo '<div id="chart_party" style="width:600px;height:300px"></div>';
+		echo '<div id="chart_party" style="width:800px;height:500px"></div>';
 		echo '</div>';
 		
 		echo '</div>';
 	}
 	
 ?>
-
 	</div>					
 	</div>					
 	<div class="col-md-3 redes-sidebar">
