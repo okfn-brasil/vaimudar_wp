@@ -172,17 +172,42 @@ function wpb_adding_scripts() {
 	$current_url 	= add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
 	$current_url 	= explode('/',$current_url);
 	
-	if(!in_array('redes-de-poder', $current_url)) {
-		return false;	
-	}
-
 	$url = get_template_directory_uri();
 	
-	wp_register_script('chart', $url.'-vaimudar/js/chart.js', array('jquery'),'0.1', true);
-	wp_enqueue_script('chart');
+	if(in_array('redes-de-poder', $current_url)) {
+		wp_register_script('chart', $url.'-vaimudar/js/chart.js', array('jquery'),'0.1', true);
+		wp_enqueue_script('chart');
+		
+		wp_register_script('flot', $url.'-vaimudar/js/flot/jquery.flot.js', array('jquery'),'1.1', true);
+		wp_enqueue_script('flot');		
+	}
 	
-	wp_register_script('flot', $url.'-vaimudar/js/flot/jquery.flot.js', array('jquery'),'1.1', true);
-	wp_enqueue_script('flot');
+	wp_register_style('bubble-style', $url.'-vaimudar/js/bubble-map/build/bubbletree.css');
+	wp_enqueue_style('bubble-style');
+
+	wp_register_script('history', $url.'-vaimudar/js/bubble-map/lib/jquery.history.js', array('jquery'),'1.0', true);
+	wp_enqueue_script('history');
+	
+	wp_register_script('tooltip', $url.'-vaimudar/js/bubble-map/lib/jquery.tooltip.min.js', array('jquery'),'1.0', true);
+	wp_enqueue_script('tooltip');
+	
+	wp_register_script('raphael', $url.'-vaimudar/js/bubble-map/lib/raphael.js', array('jquery'),'1.0', true);
+	wp_enqueue_script('raphael');
+	
+	wp_register_script('Tween', $url.'-vaimudar/js/bubble-map/lib/Tween.js', array('jquery'),'1.0', true);
+	wp_enqueue_script('Tween');
+	
+	wp_register_script('vis4', $url.'-vaimudar/js/bubble-map/lib/vis4.js', array('jquery'),'1.0', true);
+	wp_enqueue_script('vis4');
+	
+	wp_register_script('bubbletree-home', $url.'-vaimudar/js/bubble-map/lib/bubbletree.home.js', array('jquery'),'1.0', false);
+	wp_enqueue_script('bubbletree-home');
+	
+	wp_register_script('bubbletree', $url.'-vaimudar/js/bubble-map/build/bubbletree.js', array('jquery'),'1.0', false);
+	wp_enqueue_script('bubbletree');
+	
+	wp_register_script('cofog', $url.'-vaimudar/js/bubble-map/styles/cofog.js', array('jquery'),'1.0', false);
+	wp_enqueue_script('cofog');
 }
 
 add_action( 'wp_enqueue_scripts', 'wpb_adding_scripts' );
