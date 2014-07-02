@@ -89,7 +89,7 @@
 							<a href="<?php echo $link ? $link : the_permalink(); ?>">
 				
 					    		<div class="caption">
-<!--						    		<div class="date"><i class="fa fa-clock-o"></i> <?php #the_time('j M , Y') ?> &nbsp;-->
+						    		<div class="date"><?php #the_time('j M , Y') ?> &nbsp;
 						    		
 						    			<?php 
 										$video = get_post_meta($post->ID, 'fullby_video', true );
