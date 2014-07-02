@@ -9,7 +9,7 @@
 			</div>
 		</div>
 		
-		<? } ?>
+		<?php } ?>
 		
 		<?php // if is home and is not paged show featured post
 		
