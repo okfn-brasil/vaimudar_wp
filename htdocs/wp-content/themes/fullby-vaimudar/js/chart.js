@@ -18,12 +18,12 @@ var $charts = function() {
 		    },
 		    xaxis: {
 		    	tickDecimals: 0
+		    },
+		    yaxis: {
+		    	tickFormatter: function(val, axis) {
+		    		return accounting.formatMoney(val, "R$", 2, ".", ",")
+		    	} 
 		    }
-//		    yaxis: {
-//		    	tickFormatter: function(val, axis) {
-//		    		return jQuery.maskMoney(val);
-//		    	} 
-//		    }
 		};
 	
 //	Gráfico de linhas partidos x ano x repasse
@@ -70,7 +70,7 @@ var $charts = function() {
 		            var x = item.datapoint[0].toFixed(2),
 		                y = item.datapoint[1].toFixed(2);
 
-		            showTooltip(item.pageX, item.pageY, item.series.label + " R$ " + y);
+		            showTooltip(item.pageX, item.pageY, item.series.label + '  -  ' +accounting.formatMoney(y, "R$", 2, ".", ","));
 		        }
 		    } else {
 		        $("#tooltip").remove();
@@ -147,7 +147,7 @@ var $charts = function() {
 		            var x = item.datapoint[0].toFixed(2),
 		                y = item.datapoint[1].toFixed(2);
 		            
-		            showTooltip(item.pageX, item.pageY, Math.round(x) + " - R$ " + y);
+		            showTooltip(item.pageX, item.pageY, Math.round(x) + "   -   " + accounting.formatMoney(y, "R$ ", 2, ".", ","));
 		        }
 		    } else {
 		        $("#tooltip").remove();
@@ -180,7 +180,16 @@ var $charts = function() {
 				    }
 				}
 			],  
-			{ yaxis: { ticks: $tick_labels } }  
+			{ 
+				yaxis: { ticks: $tick_labels },
+//				xaxis: {
+//			    	tickFormatter: function(val, axis) {
+//						console.log(accounting.formatMoney(val, "", 2, ".", ","));
+//			    		return accounting.formatMoney(val/100, "", 2, ".", ",")
+//			    	} 
+//			    }
+			}
+			
 		);
 	}
 	

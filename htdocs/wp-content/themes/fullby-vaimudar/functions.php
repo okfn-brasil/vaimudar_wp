@@ -167,14 +167,14 @@ function register_cpt_obras() {
 }
 
 
-if( is_page('Home') && !is_admin() ) {
+if( is_page('Home') ) {
 	 add_action("wp_enqueue_scripts", "my_jquery_enqueue", 11);
 }
 
 function my_jquery_enqueue() {
    wp_deregister_script('jquery');
    wp_register_script('jquery', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . 
-        "://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js", false, null);
+        "://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js", false, null);
    wp_enqueue_script('jquery');
 }
 
@@ -184,7 +184,8 @@ function wpb_adding_scripts() {
 	$current_url 	= add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
 	$current_url 	= explode('/',$current_url);
 	
-	$url = get_template_directory_uri();
+//	$url = get_template_directory_uri();
+	$url = 'http://teste.vaimudar.org/wp-content/themes/fullby';
 	
 	if(in_array('redes-de-poder', $current_url)) {
 		wp_register_script('chart', $url.'-vaimudar/js/chart.js', array('jquery'),'0.1', true);
@@ -192,6 +193,9 @@ function wpb_adding_scripts() {
 		
 		wp_register_script('flot', $url.'-vaimudar/js/flot/jquery.flot.js', array('jquery'),'1.1', true);
 		wp_enqueue_script('flot');
+		
+		wp_register_script('accounting', $url.'-vaimudar/js/accounting.min.js', array('jquery'),'1.1', true);
+		wp_enqueue_script('accounting');
 				
 	} elseif(is_page('Home')) {
 	
@@ -215,9 +219,6 @@ function wpb_adding_scripts() {
 		
 		wp_register_script('vis4', $url.'-vaimudar/js/bubble-map/lib/vis4.js', array('jquery'),'1.0', true);
 		wp_enqueue_script('vis4');
-		
-		wp_register_script('bubbletree-home', $url.'-vaimudar/js/bubble-map/lib/bubbletree.home.js', array('jquery'),'1.0', false);
-		wp_enqueue_script('bubbletree-home');
 		
 		wp_register_script('bubbletree', $url.'-vaimudar/js/bubble-map/build/bubbletree.js', array('jquery'),'1.0', false);
 		wp_enqueue_script('bubbletree');
