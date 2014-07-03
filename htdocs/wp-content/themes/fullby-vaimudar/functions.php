@@ -98,7 +98,8 @@ function register_cpt_analises() {
 		  'not_found' 			=> 'Nenhuma análise encontrada',
 		  'not_found_in_trash' 	=> 'Nenhuma análise encontrada na lixeira',
 		  'parent' 				=> 'Parent',
-		)
+		),
+		'taxonomies' => array('post_tag')
 	)); 
 }
 
@@ -130,7 +131,8 @@ function register_cpt_noticias() {
 		  'not_found' 			=> 'Nenhuma notícia encontrada',
 		  'not_found_in_trash' 	=> 'Nenhuma notícia encontrada na lixeira',
 		  'parent' 				=> 'Parent',
-		)
+		),
+		'taxonomies' => array('post_tag')
 	)); 
 }
 

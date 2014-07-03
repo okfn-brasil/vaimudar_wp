@@ -77,7 +77,10 @@
     
 					<?php
 					$specialPosts = new WP_Query();
-					$specialPosts->query('tag=featured&showposts=3');
+					$specialPosts->query(array('post_type' => array('post', 'analises', 'noticias'),
+								   'tag' => 'featured',
+								   'showposts' => 3
+								    ));
 					?>
 					
 					<?php if ($specialPosts->have_posts()) : while($specialPosts->have_posts()) : $specialPosts->the_post(); ?>
