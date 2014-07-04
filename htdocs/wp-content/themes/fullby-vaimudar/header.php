@@ -51,8 +51,8 @@
         
         <div id="mainmenu" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right social">
-				<li><a href=""><i class="fa fa-facebook fa-2x"></i></a></li>
-				<li><a href=""><i class="fa fa-twitter fa-2x"></i></a></li>
+				<li><a href="https://www.facebook.com/vaimudarobrasil" target="_blank"><i class="fa fa-facebook fa-2x"></i></a></li>
+				<li><a href="https://twitter.com/okfnbr" target="_blank"><i class="fa fa-twitter fa-2x"></i></a></li>
 			</ul>
           <?php /* Primary navigation */
 			wp_nav_menu( array(
@@ -67,8 +67,9 @@
         </div><!--/.nav-collapse -->
     
     </div>
-    
-    <?php if (is_home()) { ?>
+    <?php $current_url 	= add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
+    ?>
+    <?php if (is_home() || $current_url == 'http://vaimudar.org' || $current_url == 'http://vaimudar.org/') { ?>
     
     	 <?php if (!is_paged()){ ?> 
     
@@ -76,18 +77,22 @@
     
 					<?php
 					$specialPosts = new WP_Query();
-					$specialPosts->query('tag=featured&showposts=3');
+					$specialPosts->query(array('post_type' => array('post', 'analises', 'noticias'),
+								   'tag' => 'featured',
+								   'showposts' => 3
+								    ));
 					?>
 					
 					<?php if ($specialPosts->have_posts()) : while($specialPosts->have_posts()) : $specialPosts->the_post(); ?>
 			  
 					    <div class="col-sm-4 col-md-4 item-featured">
 					    
+					    <?php $link = get_post_meta($post->ID, 'link', true ); ?>
 					    	
-							<a href="<?php the_permalink(); ?>">
+							<a href="<?php echo $link ? $link : the_permalink(); ?>">
 				
 					    		<div class="caption">
-						    		<div class="date"><i class="fa fa-clock-o"></i> <?php the_time('j M , Y') ?> &nbsp;
+						    		<div class="date"><?php #the_time('j M , Y') ?> &nbsp;
 						    		
 						    			<?php 
 										$video = get_post_meta($post->ID, 'fullby_video', true );

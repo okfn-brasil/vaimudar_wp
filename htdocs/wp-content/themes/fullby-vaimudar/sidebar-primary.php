@@ -2,121 +2,33 @@
 	<div class="tab-header">
 		<span class="greenlight">#</span>Discussões
 	</div>
+	
 	<div class="tab-spacer">
 
-		<!-- Nav tabs -->
-		<ul class="nav nav-tabs" id="myTab">
-		
-			<li class="active col-xs-6"><a href="#profile" data-toggle="tab">Últimas</a></li>
-			<li class=" col-xs-6"><a href="#home" data-toggle="tab">Popular</a></li>
-			
-		</ul>
-			
-		<!-- Tab panes -->
-		<div class="tab-content">
-			
-			<div class="tab-pane fade in active" id="profile">
-			  	
-		  		<?php 
-				$popularpost = new WP_Query( array( 'posts_per_page' => 4) );
-				while ( $popularpost->have_posts() ) : $popularpost->the_post();?>
-		
-					<a href="<?php the_permalink(); ?>">
-					
-						<?php $video = get_post_meta($post->ID, 'fullby_video', true );
-			  
-						if($video != '') {?>
-	
-							<img src="http://img.youtube.com/vi/<?php echo $video ?>/1.jpg" class="grid-cop"/>
-	
-						<?php 				                 
-	               
-		             	} else if ( has_post_thumbnail() ) { ?>
-	
-	                        <?php the_post_thumbnail('thumbnail', array('class' => 'thumbnail')); ?>
-	   
-	                    <?php } ?>
-		
-			    		<h2 class="title"><?php the_title(); ?></h2>
-			    		
-			    		<div class="date"><i class="fa fa-clock-o"></i> <?php the_time('j M , Y') ?> &nbsp;
-			    		
-							<?php 
-							$video = get_post_meta($post->ID, 'fullby_video', true );
-							
-							if($video != '') { ?>
-			             			
-			             		<i class="fa fa-video-camera"></i> Video
-			             			
-			             	<?php } else if (strpos($post->post_content,'[gallery') !== false) { ?>
-			             			
-			             		<i class="fa fa-th"></i> Gallery
-		
-		             		<?php } else {?>
-		
-		             		<?php } ?>
-		
-			    		</div>
-			    		
-			    	</a>
-		
-				<?php endwhile; ?>
-			  	
-			</div>
-			
-			<div class="tab-pane fade in" id="home">
-	
-				<?php // POPULAR POST
-				$popularpost = new WP_Query( array( 'posts_per_page' => 4, 'meta_key' => 'wpb_post_views_count', 'orderby' => 'meta_value_num', 'order' => 'DESC'  ) );
-				while ( $popularpost->have_posts() ) : $popularpost->the_post();?>
-		
-				<a href="<?php the_permalink(); ?>">
-				
-					<?php $video = get_post_meta($post->ID, 'fullby_video', true );
-		  
-					if($video != '') {?>
-		
-						<img src="http://img.youtube.com/vi/<?php echo $video ?>/1.jpg" class="grid-cop"/>
-	
-					<?php 				                 
-	           
-	             	} else if ( has_post_thumbnail() ) { ?>
-	
-	                    <?php the_post_thumbnail('thumbnail', array('class' => 'thumbnail')); ?>
-	
-	                <?php } ?>
-	
-		    		<h2 class="title"><?php the_title(); ?></h2>
-		    		
-		    		<div class="date"><i class="fa fa-clock-o"></i> <?php the_time('j M , Y') ?> &nbsp;
-		    		
-						<?php 
-						$video = get_post_meta($post->ID, 'fullby_video', true );
-						
-						if($video != '') { ?>
-		             			
-		             		<i class="fa fa-video-camera"></i> Video
-		             			
-		             	<?php } else if (strpos($post->post_content,'[gallery') !== false) { ?>
-		             			
-		             		<i class="fa fa-th"></i> Gallery
-	
-	             		<?php } else {?>
-	
-	             		<?php } ?>
-	
-		    		</div>
-	
-		    	</a>
-		
-				<?php endwhile; ?>
-			
-			</div>
-					 
-		</div>
-	
 	</div>
+	<?php 
+		$args = array(
+				    'orderby'          => 'name',
+				    'order'            => 'ASC',
+				    'limit'            => -1,
+				    'category_name'    => 'dos',
+				    'hide_invisible'   => 1,
+				    'show_updated'     => 0,
+				    'echo'             => 1,
+				    'categorize'       => 0,
+				    'title_li'         => __('Participe nas discussões das leis'),
+				    'title_before'     => '<h4>',
+				    'title_after'      => '</h4>',
+				    'category_orderby' => 'name',
+				    'category_order'   => 'ASC',
+//				    'class'            => 'linkcat',
+				    'category_before'  => '<li id=%id class=%class style="list-style-type: none;">',
+				    'category_after'   => '</li>' 
+				);
+				 
+		wp_list_bookmarks($args);
+	?>
 	
 	<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Primary Sidebar') ) : ?>
-	
-	<?php endif; ?>		
+	 
+	<?php endif; ?>
