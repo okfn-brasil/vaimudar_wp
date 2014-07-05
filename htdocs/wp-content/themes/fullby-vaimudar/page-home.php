@@ -31,7 +31,9 @@
      
 	<?php 
 		$analises = new WP_Query();
-		$analises->query(array('post_type' => array('analises') ) );
+		$analises->query(array('post_type' => array('analises', 'post'),
+				       'tag__not_in' => array(2)));
+
 	?>
 		<div class="grid">
 			<?php if ($analises->have_posts()) :?><?php while($analises->have_posts()) : $analises->the_post(); ?> 
@@ -44,7 +46,7 @@
 						
 						<h2 class="grid-tit"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 						
-						<p class="meta"> <i class="fa fa-clock-o"></i> <?php the_time('j M , Y') ?> &nbsp;
+						<p class="meta"> 
 						
 							<?php 
 							$video = get_post_meta($post->ID, 'fullby_video', true );

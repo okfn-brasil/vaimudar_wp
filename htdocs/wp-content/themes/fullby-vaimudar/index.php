@@ -32,6 +32,15 @@
 		
 		<?php }  ?>
 
+		<?php
+
+				global $wp_query;
+				$wp_query->query(array('post_type' => array('analises', 'noticias'),
+					               'tag__not_in' => array(2)));
+				$wp_query->get_posts();
+	
+		?>
+
 		<div class="grid">
 					
 			<?php if (have_posts()) :?><?php while(have_posts()) : the_post(); ?> 
